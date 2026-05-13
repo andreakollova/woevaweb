@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-sk="Woeva — Tvoji ľudia sú už vonku." data-en="Woeva — Your people are already out.">Woeva — Tvoji ľudia sú už vonku.</title>
+  <meta name="description" content="Nájdi klub, komunitu, kamošov. Poď aj ty von s appkou woeva." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --lime: #C8FF00;
+      --lime-dark: #a8d900;
+      --black: #111111;
+      --dark: #1A1A1A;
+      --cream: #F5F4EF;
+      --white: #ffffff;
+      --gray: #888888;
+      --gray-light: #e8e8e0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 3px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 68px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(200,255,0,0.85);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      transition: background 0.3s;
+    }
+    nav.dark-nav {
+      background: rgba(26,26,26,0.92);
+      border-bottom-color: rgba(255,255,255,0.06);
+    }
+    nav.dark-nav .nav-link { color: rgba(255,255,255,0.7); }
+    nav.dark-nav .nav-link:hover { color: var(--white); }
+
+    .nav-logo {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: var(--black);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    nav.dark-nav .nav-logo { color: var(--white); }
+
+    .nav-logo svg { width: 28px; height: 28px; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-link {
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(0,0,0,0.7);
+      text-decoration: none;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+    .nav-link:hover { color: var(--black); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      background: rgba(0,0,0,0.1);
+      border-radius: 20px;
+      padding: 3px;
+    }
+    nav.dark-nav .lang-toggle { background: rgba(255,255,255,0.1); }
+    .lang-btn {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 16px;
+      border: none;
+      background: transparent;
+      color: rgba(0,0,0,0.5);
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+    }
+    nav.dark-nav .lang-btn { color: rgba(255,255,255,0.4); }
+    .lang-btn.active {
+      background: var(--black);
+      color: var(--lime);
+    }
+    nav.dark-nav .lang-btn.active { background: var(--lime); color: var(--black); }
+
+    .btn-nav {
+      background: var(--black);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+      text-decoration: none;
+      display: inline-block;
+      white-space: nowrap;
+    }
+    .btn-nav:hover { opacity: 0.85; transform: translateY(-1px); }
+    nav.dark-nav .btn-nav { background: var(--lime); color: var(--black); }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      width: 22px; height: 2px;
+      background: var(--black);
+      border-radius: 2px;
+      transition: all 0.3s;
+      display: block;
+    }
+    nav.dark-nav .nav-hamburger span { background: var(--white); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--lime);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 80px 80px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: rgba(0,0,0,0.6);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--black);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero-h1 {
+      font-size: clamp(64px, 8vw, 110px);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -4px;
+      margin-bottom: 32px;
+    }
+    .hero-h1 .line1 { color: var(--black); display: block; }
+    .hero-h1 .line2 {
+      color: var(--white);
+      display: block;
+      -webkit-text-stroke: 0;
+    }
+
+    .hero-sub {
+      font-size: 20px;
+      font-weight: 400;
+      color: rgba(0,0,0,0.65);
+      line-height: 1.55;
+      margin-bottom: 44px;
+      max-width: 480px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--black);
+      color: var(--white);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--black);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: 100px;
+      border: 2px solid rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--black); transform: translateY(-2px); }
+
+    .hero-wmark {
+      position: absolute;
+      right: -60px;
+      bottom: -40px;
+      width: 55%;
+      max-width: 700px;
+      opacity: 0.18;
+      z-index: 1;
+      animation: floatW 6s ease-in-out infinite;
+    }
+    @keyframes floatW {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(1deg); }
+    }
+
+    /* ── SECTION BASE ── */
+    section { position: relative; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ── FEATURES ── */
+    .features {
+      background: var(--cream);
+      padding: 120px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+
+    .section-h2 {
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -2px;
+      color: var(--black);
+      margin-bottom: 24px;
+    }
+
+    .section-sub {
+      font-size: 18px;
+      font-weight: 400;
+      color: rgba(0,0,0,0.55);
+      line-height: 1.65;
+      max-width: 420px;
+    }
+
+    /* Phone mockup */
+    .phone-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .phone-device {
+      width: 260px;
+      height: 530px;
+      background: var(--black);
+      border-radius: 44px;
+      position: relative;
+      box-shadow: 0 60px 120px rgba(0,0,0,0.25), 0 20px 40px rgba(0,0,0,0.15);
+      overflow: hidden;
+      animation: floatPhone 5s ease-in-out infinite;
+    }
+    @keyframes floatPhone {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-12px) rotate(-1deg); }
+    }
+
+    .phone-notch {
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 28px;
+      background: var(--black);
+      border-radius: 20px;
+      z-index: 10;
+    }
+    .phone-screen {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, #1a1a1a 0%, #111 40%, #0a0a0a 100%);
+      border-radius: 44px;
+      overflow: hidden;
+      padding: 60px 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .phone-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    .phone-city {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .phone-wmark-sm {
+      width: 28px;
+      height: 28px;
+    }
+
+    .phone-chip {
+      display: inline-flex;
+      align-items: center;
+      background: var(--lime);
+      color: var(--black);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+    }
+
+    .phone-card {
+      background: rgba(255,255,255,0.06);
+      border-radius: 16px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .phone-card-img {
+      height: 80px;
+      background: linear-gradient(135deg, rgba(200,255,0,0.3) 0%, rgba(200,255,0,0.05) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+    .phone-card-body {
+      padding: 10px 12px;
+    }
+    .phone-card-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 3px;
+    }
+    .phone-card-sub {
+      font-size: 10px;
+      color: rgba(255,255,255,0.4);
+    }
+    .phone-card-dot {
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--lime);
+      margin-right: 5px;
+    }
+
+    .phone-chips-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: nowrap;
+      overflow: hidden;
+    }
+    .phone-tag {
+      font-size: 9px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .phone-tag.active { background: var(--white); color: var(--black); }
+    .phone-tag.inactive { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); }
+
+    .phone-glow {
+      position: absolute;
+      bottom: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 300px;
+      background: var(--lime);
+      border-radius: 50%;
+      opacity: 0.12;
+      filter: blur(60px);
+      pointer-events: none;
+    }
+
+    /* ── DARK SECTION ── */
+    .dark-section {
+      background: var(--dark);
+      padding: 120px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .dark-logo-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dark-wmark {
+      width: 280px;
+      height: 280px;
+      position: relative;
+    }
+
+    .dark-wmark-inner {
+      width: 100%;
+      height: 100%;
+      border: 3px solid var(--lime);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      animation: spinSlow 20s linear infinite;
+    }
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .dark-wmark-badge {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      animation: spinSlow 20s linear infinite reverse;
+    }
+
+    .dark-wmark-center {
+      width: 120px;
+      height: 120px;
+      background: rgba(200,255,0,0.08);
+      border: 2px solid rgba(200,255,0,0.3);
+      border-radius: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dark-section .section-h2 {
+      color: var(--white);
+      font-size: clamp(32px, 3.5vw, 52px);
+    }
+    .dark-section .section-h2 .accent { color: var(--lime); }
+    .dark-section .section-label { color: rgba(255,255,255,0.3); }
+    .dark-section .section-sub { color: rgba(255,255,255,0.45); }
+
+    /* ── HOW IT WORKS ── */
+    .how {
+      background: var(--cream);
+      padding: 120px 80px;
+    }
+
+    .how-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .how-left .section-h2 {
+      font-size: clamp(48px, 5.5vw, 78px);
+      line-height: 1;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 16px;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      transition: transform 0.2s;
+    }
+    .step:last-child { border-bottom: none; }
+    .step:hover { transform: translateX(6px); }
+
+    .step-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 800;
+      flex-shrink: 0;
+      transition: transform 0.3s;
+    }
+    .step:hover .step-num { transform: scale(1.1); }
+    .step-num.lime { background: var(--lime); color: var(--black); }
+    .step-num.gray { background: rgba(0,0,0,0.08); color: var(--gray); }
+
+    .step-text {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--black);
+      padding-top: 10px;
+      line-height: 1.4;
+    }
+
+    /* ── CITIES ── */
+    .cities {
+      background: var(--lime);
+      padding: 120px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cities-bg-w {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    .cities-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cities-names {
+      font-size: clamp(40px, 5vw, 68px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      color: var(--black);
+      line-height: 1.1;
+      margin: 24px 0 12px;
+    }
+
+    .cities-soon {
+      font-size: clamp(28px, 3.5vw, 46px);
+      font-weight: 700;
+      color: rgba(255,255,255,0.8);
+      letter-spacing: -1px;
+      margin-bottom: 40px;
+    }
+
+    .cities-sub {
+      font-size: 18px;
+      color: rgba(0,0,0,0.55);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    .cities-email-form {
+      margin-top: 48px;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+      background: var(--white);
+      border-radius: 100px;
+      padding: 6px 6px 6px 22px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.12);
+    }
+
+    .cities-email-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      color: var(--black);
+      outline: none;
+    }
+    .cities-email-input::placeholder { color: rgba(0,0,0,0.35); }
+
+    .cities-email-btn {
+      background: var(--black);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 22px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .cities-email-btn:hover { background: #333; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--dark);
+      padding: 140px 80px 100px;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cta-glow {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 400px;
+      background: var(--lime);
+      border-radius: 50%;
+      opacity: 0.06;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    .cta-section .section-label { color: rgba(255,255,255,0.3); margin-bottom: 24px; }
+
+    .cta-h2 {
+      font-size: clamp(40px, 5vw, 72px);
+      font-weight: 900;
+      letter-spacing: -3px;
+      line-height: 1.0;
+      color: var(--white);
+      max-width: 800px;
+      margin: 0 auto 20px;
+    }
+    .cta-h2 .accent { color: var(--lime); }
+
+    .cta-sub {
+      font-size: 17px;
+      color: rgba(255,255,255,0.35);
+      max-width: 460px;
+      margin: 0 auto 48px;
+      line-height: 1.6;
+    }
+
+    .cta-form {
+      display: flex;
+      align-items: center;
+      max-width: 460px;
+      margin: 0 auto 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: 100px;
+      padding: 6px 6px 6px 22px;
+      transition: border-color 0.2s;
+    }
+    .cta-form:focus-within { border-color: var(--lime); }
+
+    .cta-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      color: var(--white);
+      outline: none;
+    }
+    .cta-input::placeholder { color: rgba(255,255,255,0.25); }
+
+    .cta-btn {
+      background: var(--lime);
+      color: var(--black);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 22px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .cta-btn:hover { background: #d4ff1a; transform: scale(1.02); }
+
+    .cta-consent {
+      font-size: 12px;
+      color: rgba(255,255,255,0.2);
+      margin-bottom: 60px;
+    }
+
+    .store-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .store-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.06);
+      border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 12px 22px;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .store-btn:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
+    .store-btn-icon { font-size: 26px; line-height: 1; }
+    .store-btn-text { text-align: left; }
+    .store-btn-small { font-size: 10px; color: rgba(255,255,255,0.4); letter-spacing: 0.3px; display: block; }
+    .store-btn-name { font-size: 16px; font-weight: 700; color: var(--white); display: block; letter-spacing: -0.3px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 60px 80px 40px;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .footer-logo-col .nav-logo {
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .footer-store-btns {
+      display: flex;
+      gap: 10px;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .footer-store-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 8px 14px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .footer-store-btn:hover { background: rgba(255,255,255,0.1); }
+    .footer-store-btn-icon { font-size: 18px; }
+    .footer-store-btn-text .small { font-size: 8px; color: rgba(255,255,255,0.4); display: block; }
+    .footer-store-btn-text .name { font-size: 12px; font-weight: 700; color: var(--white); display: block; }
+
+    .footer-col-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-links a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-copy {
+      font-size: 13px;
+      color: rgba(255,255,255,0.2);
+    }
+    .footer-cta-btn {
+      background: var(--lime);
+      color: var(--black);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 26px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .footer-cta-btn:hover { background: #d4ff1a; transform: translateY(-1px); }
+
+    /* ── SUCCESS MSG ── */
+    .success-msg {
+      display: none;
+      color: var(--lime);
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 12px;
+    }
+    .success-msg.show { display: block; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .hero { padding: 100px 24px 60px; }
+      .hero-wmark { right: -100px; width: 80%; opacity: 0.12; }
+
+      .features { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
+      .phone-wrap { order: -1; }
+      .phone-device { width: 220px; height: 440px; }
+
+      .dark-section { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
+      .dark-logo-wrap { order: 1; }
+
+      .how { padding: 80px 24px; }
+      .how-inner { grid-template-columns: 1fr; gap: 40px; }
+
+      .cities { padding: 80px 24px; }
+
+      .cta-section { padding: 100px 24px 80px; }
+
+      footer { padding: 60px 24px 32px; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+
+      .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .footer-inner { grid-template-columns: 1fr; }
+      .hero-h1 { letter-spacing: -2px; }
+      .cities-form { flex-direction: column; border-radius: 20px; padding: 16px; }
+      .store-btns { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <svg viewBox="0 0 32 32" fill="none">
+      <path d="M4 8 L10 24 L16 12 L22 24 L28 8" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    woeva
+  </a>
+  <ul class="nav-links">
+    <li><a class="nav-link" href="#how" data-sk="Ako to funguje?" data-en="How it works?">Ako to funguje?</a></li>
+    <li><a class="nav-link" href="#dark" data-sk="Pre organizátorov" data-en="For organizers">Pre organizátorov</a></li>
+    <li><a class="nav-link" href="#cities" data-sk="O nás" data-en="About">O nás</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('sk')">SK</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="#cta" class="btn-nav" data-sk="Stiahni Woeva" data-en="Get Woeva">Stiahni Woeva</a>
+  </div>
+  <div class="nav-hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <div class="hero-badge" data-sk="BRATISLAVA SI NEXT, TEŠÍME SA NA TEBA!" data-en="BRATISLAVA IS NEXT — WE'RE GLAD YOU'RE HERE!">
+      BRATISLAVA SI NEXT, TEŠÍME SA NA TEBA!
+    </div>
+    <h1 class="hero-h1">
+      <span class="line1" data-sk="Tvoji ľudia" data-en="Your people">Tvoji ľudia</span>
+      <span class="line2" data-sk="sú už vonku." data-en="are already out.">sú už vonku.</span>
+    </h1>
+    <p class="hero-sub" data-sk="Nájdi klub, komunitu, kamošov. Poď aj ty von s appkou woeva." data-en="Find your club, community, friends. Come out with the Woeva app.">
+      Nájdi klub, komunitu, kamošov. Poď aj ty von s appkou woeva.
+    </p>
+    <div class="hero-btns">
+      <a href="#cta" class="btn-primary" data-sk="Chcem Woeva" data-en="I want Woeva">Chcem Woeva</a>
+      <a href="#cta" class="btn-outline" data-sk="Buď medzi prvými" data-en="Be among the first">Buď medzi prvými</a>
+    </div>
+  </div>
+
+  <!-- Decorative W mark -->
+  <svg class="hero-wmark" viewBox="0 0 600 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M40 60 L140 420 L260 160 L380 420 L500 60" stroke="#000" stroke-width="80" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="reveal">
+    <p class="section-label" data-sk="NÁJDI SI YOUR KIND OF PEOPLE" data-en="FIND YOUR KIND OF PEOPLE">NÁJDI SI YOUR KIND OF PEOPLE</p>
+    <h2 class="section-h2" data-sk="Lokálny sprievodca klubov, komunít a miest kde to dnes žije." data-en="Local guide to clubs, communities and places where it's happening today.">
+      Lokálny sprievodca klubov, komunít a miest kde to dnes žije.
+    </h2>
+    <p class="section-sub" data-sk="Všetky kluby a eventy v tvojom meste filtrované na to čo ťa naozaj zaujíma. Žiadne zbytočné scrollovanie. Iba dobrý plán na dnes." data-en="All clubs and events in your city filtered to what actually interests you. No pointless scrolling. Just a good plan for today.">
+      Všetky kluby a eventy v tvojom meste filtrované na to čo ťa naozaj zaujíma. Žiadne zbytočné scrollovanie. Iba dobrý plán na dnes.
+    </p>
+  </div>
+
+  <!-- Phone mockup -->
+  <div class="phone-wrap reveal reveal-delay-2">
+    <div class="phone-device">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="phone-topbar">
+          <span class="phone-city">Bratislava</span>
+          <svg class="phone-wmark-sm" viewBox="0 0 28 28" fill="none">
+            <path d="M4 6 L9 22 L14 11 L19 22 L24 6" stroke="#C8FF00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="phone-chips-row">
+          <span class="phone-tag active">All</span>
+          <span class="phone-tag inactive">Sport</span>
+          <span class="phone-tag inactive">Music</span>
+          <span class="phone-tag inactive">Coffee</span>
+          <span class="phone-tag inactive">Art</span>
+        </div>
+        <div class="phone-card">
+          <div class="phone-card-img">🏃</div>
+          <div class="phone-card-body">
+            <div class="phone-card-title">Sunday Morning Run</div>
+            <div class="phone-card-sub"><span class="phone-card-dot"></span>Sad. 8:00 · Železná studienka</div>
+          </div>
+        </div>
+        <div class="phone-card">
+          <div class="phone-card-img" style="background: linear-gradient(135deg, rgba(100,60,200,0.2) 0%, rgba(200,60,100,0.1) 100%);">🎵</div>
+          <div class="phone-card-body">
+            <div class="phone-card-title">Rooftop Jazz Night</div>
+            <div class="phone-card-sub"><span class="phone-card-dot"></span>Pia. 20:00 · Sky Bar</div>
+          </div>
+        </div>
+        <div class="phone-card">
+          <div class="phone-card-img" style="background: linear-gradient(135deg, rgba(60,160,200,0.2) 0%, rgba(60,200,160,0.1) 100%);">☕</div>
+          <div class="phone-card-body">
+            <div class="phone-card-title">Coffee & Code Meetup</div>
+            <div class="phone-card-sub"><span class="phone-card-dot"></span>Str. 10:00 · Cowork Bratislava</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="phone-glow"></div>
+  </div>
+</section>
+
+<!-- DARK SECTION -->
+<section class="dark-section" id="dark">
+  <div class="dark-logo-wrap reveal">
+    <div class="dark-wmark">
+      <div class="dark-wmark-inner">
+        <div class="dark-wmark-badge">
+          <svg width="14" height="14" viewBox="0 0 28 28" fill="none">
+            <path d="M4 6 L9 22 L14 11 L19 22 L24 6" stroke="#C8FF00" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Woeva
+        </div>
+        <div class="dark-wmark-center">
+          <svg width="60" height="50" viewBox="0 0 60 50" fill="none">
+            <path d="M6 6 L18 44 L30 18 L42 44 L54 6" stroke="#C8FF00" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="reveal reveal-delay-2">
+    <p class="section-label" data-sk="PRE ORGANIZÁTOROV" data-en="FOR ORGANIZERS">PRE ORGANIZÁTOROV</p>
+    <h2 class="section-h2">
+      <span class="accent" data-sk="Technológia" data-en="Technology">Technológia</span>
+      <span data-sk=" s ľudským prístupom" data-en=" with a human touch"> s ľudským prístupom</span>
+    </h2>
+    <p class="section-sub" data-sk="Skutočné kluby, ozajstní ľudia. Perfektné eventy, ktoré sa dejú v tvojom meste práve teraz. O dôležitosti nerozhoduje algoritmus, ale ty a tvoja komunita." data-en="Real clubs, real people. Perfect events happening in your city right now. What matters isn't decided by an algorithm — but by you and your community.">
+      Skutočné kluby, ozajstní ľudia. Perfektné eventy, ktoré sa dejú v tvojom meste práve teraz. O dôležitosti nerozhoduje algoritmus, ale ty a tvoja komunita.
+    </p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="how-inner">
+    <div class="reveal">
+      <p class="section-label" data-sk="AKO TO FUNGUJE?" data-en="HOW DOES IT WORK?">AKO TO FUNGUJE?</p>
+      <h2 class="section-h2 how-left">
+        <span data-sk="3 kliknutia" data-en="3 taps">3 kliknutia</span><br>
+        <span data-sk="3 minúty" data-en="3 minutes">3 minúty</span><br>
+        <span data-sk="V momente si vonku." data-en="You're out there.">V momente si vonku.</span>
+      </h2>
+    </div>
+    <div class="steps reveal reveal-delay-1">
+      <div class="step">
+        <div class="step-num lime">1</div>
+        <div class="step-text" data-sk="Otvor appku Woeva" data-en="Open the Woeva app">Otvor appku Woeva</div>
+      </div>
+      <div class="step">
+        <div class="step-num gray">2</div>
+        <div class="step-text" data-sk='Ťukni "Idem"' data-en='Tap "I\'m in"'>Ťukni "Idem"</div>
+      </div>
+      <div class="step">
+        <div class="step-num lime">3</div>
+        <div class="step-text" data-sk="Pridaj sa a vybehni von" data-en="Join and get out there">Pridaj sa a vybehni von</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CITIES -->
+<section class="cities" id="cities">
+  <div class="cities-bg-w">
+    <svg width="900" height="600" viewBox="0 0 900 600" fill="none">
+      <path d="M60 80 L210 520 L390 180 L570 520 L740 80" stroke="#000" stroke-width="120" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <div class="cities-content">
+    <p class="section-label reveal" data-sk="MESTÁ V KTORÝCH NÁS NÁJDEŠ" data-en="CITIES WHERE YOU'LL FIND US">MESTÁ V KTORÝCH NÁS NÁJDEŠ</p>
+    <div class="cities-names reveal reveal-delay-1" data-sk="Bratislava.<br>Prague, Vienna o chvíľku" data-en="Bratislava.<br>Prague, Vienna soon">
+      Bratislava.<br>Prague, Vienna o chvíľku
+    </div>
+    <div class="cities-soon reveal reveal-delay-2" data-sk="Tvoje mesto bude ďalšie, napíš nám kde.." data-en="Your city is next — let us know where..">
+      Tvoje mesto bude ďalšie, napíš nám kde..
+    </div>
+    <p class="cities-sub reveal reveal-delay-3" data-sk="Spúšťame postupne mesto po meste, tak aby každé mesto malo silné a aktívne kluby, a tých správnych ľudí ktorí chcú byť ich súčasťou." data-en="We launch city by city, so each city has strong and active clubs, and the right people who want to be part of them.">
+      Spúšťame postupne mesto po meste, tak aby každé mesto malo silné a aktívne kluby, a tých správnych ľudí ktorí chcú byť ich súčasťou.
+    </p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="cta-glow"></div>
+  <p class="section-label reveal" data-sk="TVOJA NOVÁ KOMUNITA NA TEBA ČAKÁ" data-en="YOUR NEW COMMUNITY IS WAITING FOR YOU">TVOJA NOVÁ KOMUNITA NA TEBA ČAKÁ</p>
+  <h2 class="cta-h2 reveal reveal-delay-1">
+    <span data-sk="Prestaň scrollovať. " data-en="Stop scrolling. ">Prestaň scrollovať. </span><span class="accent" data-sk="Začni žiť" data-en="Start living">Začni žiť</span><span data-sk=" v tvojom meste." data-en=" in your city."> v tvojom meste.</span>
+  </h2>
+  <p class="cta-sub reveal reveal-delay-2" data-sk="Stiahni si Woeva a objav čo sa deje okolo teba. Nechaj nám na teba email a dostaneš prístup k appke medzi prvými." data-en="Download Woeva and discover what's happening around you. Leave us your email and be among the first to access the app.">
+    Stiahni si Woeva a objav čo sa deje okolo teba. Nechaj nám na teba email a dostaneš prístup k appke medzi prvými.
+  </p>
+  <div class="cta-form reveal reveal-delay-2">
+    <input class="cta-input" id="ctaEmail" type="email" placeholder="tvoj@gmail.com" data-sk-placeholder="tvoj@gmail.com" data-en-placeholder="your@email.com" />
+    <button class="cta-btn" onclick="submitEmail()" data-sk="Chcem prístup" data-en="I want access">Chcem prístup</button>
+  </div>
+  <p class="cta-consent reveal" data-sk="*Súhlasím so spracovaním osobných údajov." data-en="*I agree to the processing of personal data.">*Súhlasím so spracovaním osobných údajov.</p>
+  <div class="success-msg" id="successMsg" data-sk="Skvelé! Ozveme sa ti. 🎉" data-en="Great! We'll be in touch. 🎉">Skvelé! Ozveme sa ti. 🎉</div>
+
+  <div class="store-btns reveal reveal-delay-3" style="margin-top: 60px;">
+    <a href="#" class="store-btn">
+      <span class="store-btn-icon"></span>
+      <div class="store-btn-text">
+        <span class="store-btn-small" data-sk="Stiahnuť na" data-en="Download on the">Stiahnuť na</span>
+        <span class="store-btn-name">App Store</span>
+      </div>
+    </a>
+    <a href="#" class="store-btn">
+      <span class="store-btn-icon">▶</span>
+      <div class="store-btn-text">
+        <span class="store-btn-small" data-sk="Získať cez" data-en="Get it on">Získať cez</span>
+        <span class="store-btn-name">Google Play</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo-col">
+      <a href="#" class="nav-logo">
+        <svg viewBox="0 0 32 32" fill="none">
+          <path d="M4 8 L10 24 L16 12 L22 24 L28 8" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        woeva
+      </a>
+      <div class="footer-store-btns">
+        <a href="#" class="footer-store-btn">
+          <span class="footer-store-btn-icon"></span>
+          <div class="footer-store-btn-text">
+            <span class="small" data-sk="Stiahnuť na" data-en="Download on">Stiahnuť na</span>
+            <span class="name">App Store</span>
+          </div>
+        </a>
+        <a href="#" class="footer-store-btn">
+          <span class="footer-store-btn-icon">▶</span>
+          <div class="footer-store-btn-text">
+            <span class="small" data-sk="Získať cez" data-en="Get it on">Získať cez</span>
+            <span class="name">Google Play</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="footer-col-title" data-sk="NAVIGÁCIA" data-en="NAVIGATION">NAVIGÁCIA</p>
+      <ul class="footer-links">
+        <li><a href="#how" data-sk="Ako to funguje?" data-en="How it works?">Ako to funguje?</a></li>
+        <li><a href="#dark" data-sk="Pre organizátorov" data-en="For organizers">Pre organizátorov</a></li>
+        <li><a href="#cities" data-sk="O nás" data-en="About us">O nás</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="footer-col-title" data-sk="KONTAKT" data-en="CONTACT">KONTAKT</p>
+      <ul class="footer-links">
+        <li><a href="mailto:hello@woeva.app">hello@woeva.app</a></li>
+        <li><a href="https://instagram.com/woevaapp" target="_blank">@woevaapp</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="footer-col-title" data-sk="PRÁVNE" data-en="LEGAL">PRÁVNE</p>
+      <ul class="footer-links">
+        <li><a href="/privacy" data-sk="Súkromie" data-en="Privacy Policy">Súkromie</a></li>
+        <li><a href="/terms" data-sk="Podmienky používania" data-en="Terms of Service">Podmienky používania</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span class="footer-copy" data-sk="© 2026 Woeva. Všetky práva vyhradené." data-en="© 2026 Woeva. All rights reserved.">© 2026 Woeva. Všetky práva vyhradené.</span>
+    <a href="#cta" class="footer-cta-btn" data-sk="Stiahni Woeva" data-en="Get Woeva">Stiahni Woeva</a>
+  </div>
+</footer>
+
+<script>
+  // ── LANGUAGE ──
+  let lang = 'sk';
+
+  function setLang(l) {
+    lang = l;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector(`.lang-btn[onclick="setLang('${l}')"]`).classList.add('active');
+    translateAll();
+  }
+
+  function translateAll() {
+    document.querySelectorAll('[data-sk]').forEach(el => {
+      const val = el.getAttribute('data-' + lang);
+      if (!val) return;
+      if (el.tagName === 'INPUT') {
+        el.placeholder = val;
+      } else if (val.includes('<br>')) {
+        el.innerHTML = val;
+      } else {
+        el.textContent = val;
+      }
+    });
+    // Placeholders
+    document.querySelectorAll('[data-sk-placeholder]').forEach(el => {
+      el.placeholder = el.getAttribute('data-' + lang + '-placeholder') || el.getAttribute('data-sk-placeholder');
+    });
+    // Page title
+    const titleEl = document.querySelector('title');
+    if (titleEl) titleEl.textContent = titleEl.getAttribute('data-' + lang) || titleEl.getAttribute('data-sk');
+  }
+
+  // ── NAV SCROLL ──
+  const nav = document.getElementById('mainNav');
+  const heroSection = document.getElementById('hero');
+  const heroBg = getComputedStyle(heroSection).backgroundColor;
+
+  window.addEventListener('scroll', () => {
+    const heroBottom = heroSection.getBoundingClientRect().bottom;
+    if (heroBottom < 68) {
+      nav.classList.add('dark-nav');
+    } else {
+      nav.classList.remove('dark-nav');
+    }
+  });
+
+  // ── SCROLL REVEAL ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── EMAIL FORM ──
+  function submitEmail() {
+    const input = document.getElementById('ctaEmail');
+    const msg = document.getElementById('successMsg');
+    if (!input.value || !input.value.includes('@')) {
+      input.style.borderColor = 'rgba(255,80,80,0.6)';
+      setTimeout(() => input.style.borderColor = '', 2000);
+      return;
+    }
+    input.closest('.cta-form').style.display = 'none';
+    msg.classList.add('show');
+    msg.textContent = lang === 'sk' ? 'Skvelé! Ozveme sa ti. 🎉' : 'Great! We\'ll be in touch. 🎉';
+  }
+
+  // Allow Enter key to submit
+  document.getElementById('ctaEmail')?.addEventListener('keydown', e => {
+    if (e.key === 'Enter') submitEmail();
+  });
+
+  // ── MOBILE MENU ──
+  let menuOpen = false;
+  function toggleMenu() {
+    menuOpen = !menuOpen;
+    const links = document.querySelector('.nav-links');
+    if (menuOpen) {
+      links.style.cssText = `display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:var(--dark);padding:24px 32px 32px;gap:20px;z-index:99;border-bottom:1px solid rgba(255,255,255,0.06);`;
+      links.querySelectorAll('a').forEach(a => a.style.color = 'rgba(255,255,255,0.8)');
+    } else {
+      links.style.cssText = 'display:none;';
+    }
+  }
+
+  // Close menu on link click
+  document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => {
+    menuOpen = false;
+    document.querySelector('.nav-links').style.cssText = 'display:none;';
+  }));
+</script>
+</body>
+</html>
