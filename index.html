@@ -777,9 +777,13 @@
       .nav-links { display: none; }
       .nav-mobile-btn { display: block; }
 
-      .hero { padding: 80px 24px 56px; }
+      .hero { padding: 100px 24px 52px; }
       .fc { display: none; }
-      .hero-logo-bg { width: 100%; }
+      .hero-logo-bg { width: 120%; }
+
+      .phone-frame { width: 240px; height: 520px; border-radius: 44px; }
+      .phone-island { width: 82px; height: 26px; }
+      .phone-screen { border-radius: 42px; }
 
       .collage-wrap { height: 360px; }
       .ci-1 { width: 180px; height: 240px; }
@@ -787,10 +791,11 @@
       .ci-3 { width: 165px; height: 220px; }
       .ci-4 { display: none; }
 
-      .photo-mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: 180px 180px; }
+      .photo-mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px; }
 
-      .dark-strip { padding: 60px 24px; }
-      .dark-strip-inner { grid-template-columns: 1fr !important; gap: 40px !important; }
+      .dark-strip { padding: 60px 24px 72px; }
+      .dark-strip-inner { grid-template-columns: 1fr !important; gap: 0 !important; }
+      .dark-strip-map { display: none; }
       .section { padding: 72px 24px; }
 
       .two-col { grid-template-columns: 1fr; gap: 40px; }
@@ -802,6 +807,14 @@
       .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
     }
     @media (max-width: 540px) {
+      .hero { padding: 88px 20px 44px; }
+      .phone-frame { width: 210px; height: 454px; border-radius: 40px; }
+      .phone-island { width: 72px; height: 22px; }
+      .phone-screen { border-radius: 38px; }
+      .hero-bottom { margin-top: 32px; }
+
+      .photo-mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: 160px 160px; }
+
       .t-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
       .store-row { flex-direction: column; align-items: center; }
@@ -809,6 +822,15 @@
       .ci-1 { width: 150px; height: 200px; }
       .ci-2 { width: 130px; height: 170px; left: 110px; }
       .ci-3 { width: 145px; height: 190px; }
+
+      .section { padding: 60px 20px; }
+      .dark-strip { padding: 52px 20px 60px; }
+      .t-section { padding: 72px 20px; }
+      .vis-phone-wrap { padding: 28px 24px; }
+      .vis-phone { width: 160px; height: 346px; }
+
+      .activity-cloud { gap: 8px; }
+      .act-tag { font-size: 13px; padding: 9px 14px; }
     }
   </style>
 </head>
@@ -915,7 +937,7 @@
 </section>
 
 <!-- Wave divider: hero → dark -->
-<svg class="wave-divider" style="background:#C2F600;" viewBox="0 0 1440 48" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+<svg class="wave-divider" style="background:#ffffff;" viewBox="0 0 1440 48" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M0 24 C120 4 240 44 360 24 C480 4 600 44 720 24 C840 4 960 44 1080 24 C1200 4 1320 44 1440 24 L1440 48 L0 48 Z" fill="#111111"/>
 </svg>
 
@@ -940,7 +962,7 @@
         <span style="display:inline-flex;align-items:center;gap:6px;padding:7px 16px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:100px;font-size:13px;font-weight:500;color:#fff;">🌍 viac...</span>
       </div>
     </div>
-    <div class="r d2" style="display:flex;align-items:flex-end;justify-content:flex-end;min-height:400px;">
+    <div class="r d2 dark-strip-map" style="display:flex;align-items:flex-end;justify-content:flex-end;min-height:400px;">
       <div style="width:75%;border-radius:24px 24px 0 0;overflow:hidden;box-shadow:0 -20px 60px rgba(0,0,0,0.4);">
         <img src="mapazoomed.png" alt="Woeva Discover Map" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;border-radius:20px 20px 0 0;" />
       </div>
