@@ -1330,7 +1330,9 @@
       html, body { overflow-x: hidden; }
 
       /* ── Nav ── */
-      nav { padding: 0 24px; background: rgba(255,255,255,0.97) !important; backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(0,0,0,0.07); }
+      nav { padding: 0 24px; background: rgba(255,255,255,0.97) !important; backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(0,0,0,0.07); justify-content: flex-start; gap: 0; }
+      .nav-logo { margin-right: auto; }
+      .nav-right { gap: 0; margin-right: 10px; }
       nav.dark-mode { background: rgba(255,255,255,0.97) !important; border-bottom-color: rgba(0,0,0,0.07) !important; }
       nav.dark-mode .nav-mobile-btn { color: var(--black) !important; }
       .nav-links { display: none; }
