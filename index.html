@@ -91,8 +91,9 @@
 
     .nav-mobile-btn {
       display: none; background: none; border: none;
-      cursor: pointer; padding: 4px;
+      cursor: pointer; padding: 4px; color: var(--black);
     }
+    #mobile-menu { display: none; }
 
     /* ── Language picker ── */
     .lang-picker { position: relative; }
@@ -1331,8 +1332,33 @@
       nav.dark-mode { background: rgba(255,255,255,0.97) !important; border-bottom-color: rgba(0,0,0,0.07) !important; }
       nav.dark-mode .nav-mobile-btn { color: var(--black) !important; }
       .nav-links { display: none; }
-      .nav-mobile-btn { display: block; }
+      .nav-mobile-btn { display: flex; align-items: center; justify-content: center; }
       .nav-btn-lime { display: none; }
+      .nav-cta { display: none; }
+
+      /* ── Mobile menu overlay ── */
+      #mobile-menu {
+        display: flex; flex-direction: column;
+        position: fixed; top: 68px; left: 0; right: 0;
+        background: #fff; z-index: 199;
+        padding: 28px 28px 40px;
+        border-bottom: 1px solid rgba(0,0,0,0.07);
+        box-shadow: 0 32px 80px rgba(0,0,0,0.15);
+        opacity: 0; transform: translateY(-10px); pointer-events: none;
+        transition: opacity 0.22s ease, transform 0.22s ease;
+      }
+      #mobile-menu.open { opacity: 1; transform: translateY(0); pointer-events: all; }
+      .mob-link {
+        font-size: 22px; font-weight: 700; letter-spacing: -0.04em;
+        color: var(--black); text-decoration: none;
+        padding: 15px 0; border-bottom: 1px solid rgba(0,0,0,0.06); display: block;
+      }
+      .mob-cta-btn {
+        display: block; background: var(--lime); color: var(--black);
+        font-size: 17px; font-weight: 700; letter-spacing: -0.03em;
+        text-align: center; padding: 17px; border-radius: 100px;
+        text-decoration: none; margin-top: 24px;
+      }
 
       /* ── Hero ── */
       .hero { padding: 96px 24px 60px; }
@@ -1351,6 +1377,7 @@
 
       /* ── Photo mosaic ── */
       .photo-mosaic { height: 180px; }
+      .mosaic-wrap { background: var(--lime) !important; padding-bottom: 40px !important; }
 
       /* ── Dark strip ── */
       .dark-strip { padding: 60px 24px 72px; }
@@ -1358,38 +1385,43 @@
       .dark-strip-map { display: none; }
 
       /* ── Mesta section ── */
-      .mesta-section { padding: 60px 24px 0; overflow: hidden; }
+      .mesta-section { padding: 60px 0 0; overflow: hidden; background: var(--lime) !important; }
       .mesta-inner { margin: 0; grid-template-columns: 1fr; gap: 0; max-width: 100%; }
       .mesta-phone { display: none; }
       .mesta-blob { width: 100%; }
-      .mesta-card { border-radius: 24px 24px 0 0; padding: 44px 32px 40px; width: 100%; }
-      .mesta-btn-strip { width: 60%; border-radius: 0 48px 48px 0; padding: 14px 24px 14px 32px; justify-content: flex-end; margin-top: 0; }
+      .mesta-card { border-radius: 24px 24px 0 0; padding: 44px 28px 40px; width: 100%; margin: 0 auto; max-width: calc(100% - 48px); }
+      .mesta-btn-strip { width: 100%; border-radius: 0; background: transparent !important; padding: 16px 24px 0; justify-content: center; margin-top: 0; }
 
       /* ── Picks section ── */
       .picks-section { padding: 64px 24px; overflow: hidden; }
-      .picks-inner { grid-template-columns: 1fr; gap: 48px; }
-      .picks-fan { height: 300px; margin-left: 0; overflow: hidden; border-radius: 20px; }
-      .picks-fan-circle { left: -24px; right: -24px; border-radius: 20px; top: 0; bottom: 0; transform: none; height: 100%; }
-      .pf-1 { width: 165px; height: 215px; left: 8px; top: 16px; }
-      .pf-2 { width: 140px; height: 183px; right: 8px; top: 12px; }
-      .pf-3 { width: 180px; height: 235px; left: 60px; bottom: 8px; }
-      .pf-4 { display: none; }
+      .picks-inner { grid-template-columns: 1fr; gap: 40px; }
+      .picks-fan { height: auto; margin: 0; overflow: visible; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+      .picks-fan-circle { display: none; }
+      .pf { position: relative; left: auto; right: auto; top: auto; bottom: auto; width: 100%; height: 175px; transform: none !important; box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+      .pf-1 { border-radius: 20px 8px 8px 20px; }
+      .pf-2 { border-radius: 8px 20px 20px 8px; }
+      .pf-3 { border-radius: 20px 8px 8px 20px; }
+      .pf-4 { display: block !important; border-radius: 8px 20px 20px 8px; }
+      .picks-fan.r { opacity: 0; transform: translateX(60px); transition: transform 0.75s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.6s ease; }
+      .picks-fan.r.vis { opacity: 1; transform: translateX(0); }
 
       /* ── City section ── */
-      .city-section { padding: 64px 24px; overflow: hidden; }
-      .city-inner { grid-template-columns: 1fr; gap: 36px; }
+      .city-section { padding: 64px 0; overflow: visible; }
+      .city-inner { grid-template-columns: 1fr; gap: 36px; padding: 0 24px; }
       .city-text-col { order: -1; }
-      .city-hl-wide::after { display: none; }
-      .city-hl-wide { border-radius: 100px; padding: 4px 14px; }
+      .city-hl-wide::after { display: block; }
+      .city-hl-wide { border-radius: 100px 0 0 100px; padding: 4px 14px 4px 10px; }
       .city-h2 { font-size: clamp(24px, 7vw, 34px); }
       .city-tail { display: none; }
+      .city-tags { flex-wrap: nowrap; overflow-x: auto; gap: 8px; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding: 0 24px 4px; width: calc(100% + 0px); }
+      .city-tags::-webkit-scrollbar { display: none; }
 
       /* ── Generic sections ── */
       .section { padding: 72px 24px; overflow: hidden; }
       .two-col { grid-template-columns: 1fr; gap: 40px; }
       .two-col.rev { direction: ltr; }
-      .s-h2 .hl::after { display: none; }
-      .s-h2 .hl { border-radius: 100px; padding: 4px 12px; }
+      .s-h2 .hl::after { display: block; }
+      .s-h2 .hl { border-radius: 0 100px 100px 0; padding: 4px 10px 4px 0; }
 
       /* ── Reviews ── */
       #reviews-col { margin-right: 0 !important; padding-right: 24px !important; }
@@ -1459,20 +1491,18 @@
 
       /* ── Mesta ── */
       .mesta-section { padding: 52px 0 0; }
-      .mesta-card { padding: 36px 24px 32px; }
+      .mesta-card { padding: 36px 20px 32px; max-width: calc(100% - 40px); }
       .mesta-card h2 { font-size: clamp(18px, 5.5vw, 26px); }
-      .mesta-btn-strip { width: 70%; }
+      .mesta-btn-strip { padding: 14px 20px 0; }
 
       /* ── Picks ── */
       .picks-section { padding: 52px 20px; }
-      .picks-fan { height: 240px; }
-      .pf-1 { width: 140px; height: 183px; left: 6px; top: 14px; }
-      .pf-2 { width: 118px; height: 154px; right: 6px; top: 10px; }
-      .pf-3 { width: 155px; height: 202px; left: 50px; bottom: 6px; }
+      .pf { height: 150px; }
 
       /* ── City ── */
-      .city-section { padding: 52px 20px; }
-      .city-inner { gap: 28px; }
+      .city-section { padding: 52px 0; }
+      .city-inner { gap: 28px; padding: 0 20px; }
+      .city-tags { padding: 0 20px 4px; }
 
       /* ── Easy section ── */
       .easy-section { padding: 52px 20px 0; }
@@ -1548,12 +1578,24 @@
     <a href="#cta" class="nav-btn-lime">Download App</a>
     <a href="#cta" class="nav-cta">Get Started</a>
   </div>
-  <button class="nav-mobile-btn" onclick="toggleMenu()" aria-label="Menu">
-    <svg width="22" height="16" viewBox="0 0 22 16" fill="none">
-      <path d="M1 1h20M1 8h20M1 15h20" stroke="#0D0D0D" stroke-width="1.8" stroke-linecap="round"/>
+  <button class="nav-mobile-btn" id="menuBtn" onclick="toggleMenu()" aria-label="Menu">
+    <svg class="ham-icon" width="22" height="16" viewBox="0 0 22 16" fill="none">
+      <path d="M1 1h20M1 8h20M1 15h20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="x-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" style="display:none">
+      <path d="M2 2l16 16M18 2L2 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
   </button>
 </nav>
+
+<!-- ══ MOBILE MENU ══ -->
+<div id="mobile-menu">
+  <a href="#hero" class="mob-link">Home</a>
+  <a href="#organizers" class="mob-link">For creators</a>
+  <a href="#mesta" class="mob-link">Cities</a>
+  <a href="#about" class="mob-link">About us</a>
+  <a href="#cta" class="mob-cta-btn">Get Started →</a>
+</div>
 
 <!-- ══ HERO ══ -->
 <section class="hero" id="hero">
@@ -1701,7 +1743,7 @@
 </section>
 
 <!-- Photo mosaic -->
-<div style="background:var(--off-white);padding:0 0 80px;">
+<div class="mosaic-wrap" style="background:var(--off-white);padding:0 0 80px;">
   <div>
     <div class="photo-mosaic">
       <div class="pm">
@@ -2281,28 +2323,51 @@
   let menuOpen = false;
   function toggleMenu() {
     menuOpen = !menuOpen;
-    const links = document.querySelector('.nav-links');
+    const menu = document.getElementById('mobile-menu');
+    const ham  = document.querySelector('.ham-icon');
+    const x    = document.querySelector('.x-icon');
     if (menuOpen) {
-      links.style.cssText =
-        'display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;' +
-        'background:#fff;padding:22px 28px 30px;gap:20px;z-index:199;' +
-        'border-bottom:1px solid #eee;box-shadow:0 10px 28px rgba(0,0,0,0.07);';
-      links.querySelectorAll('a').forEach(a => {
-        a.style.opacity = '1'; a.style.fontSize = '16px';
-      });
+      menu.classList.add('open');
+      ham.style.display = 'none';
+      x.style.display = 'block';
     } else {
-      links.style.cssText = '';
-      links.querySelectorAll('a').forEach(a => { a.style.opacity = ''; a.style.fontSize = ''; });
+      menu.classList.remove('open');
+      ham.style.display = '';
+      x.style.display = 'none';
     }
   }
-  document.querySelectorAll('.nav-links a').forEach(a =>
-    a.addEventListener('click', () => {
-      menuOpen = false;
-      const links = document.querySelector('.nav-links');
-      links.style.cssText = '';
-      links.querySelectorAll('a').forEach(a => { a.style.opacity = ''; a.style.fontSize = ''; });
-    })
-  );
+  function closeMenu() {
+    menuOpen = false;
+    document.getElementById('mobile-menu').classList.remove('open');
+    document.querySelector('.ham-icon').style.display = '';
+    document.querySelector('.x-icon').style.display = 'none';
+  }
+  document.querySelectorAll('#mobile-menu a').forEach(a => a.addEventListener('click', closeMenu));
+
+  // ── Hero phone: touch tilt on mobile ──
+  (function () {
+    const wrap = document.getElementById('phoneWrap');
+    if (!wrap) return;
+    let touchRaf;
+    document.addEventListener('touchmove', e => {
+      if (window.innerWidth > 960) return;
+      const t = e.touches[0];
+      if (touchRaf) cancelAnimationFrame(touchRaf);
+      touchRaf = requestAnimationFrame(() => {
+        const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+        const dx = (t.clientX - cx) / cx;
+        const dy = (t.clientY - cy) / cy;
+        wrap.style.transform = `translate(${dx * 10}px, ${dy * 8}px) rotateY(${dx * 8}deg) rotateX(${-dy * 5}deg)`;
+        wrap.style.transition = 'none';
+      });
+    }, { passive: true });
+    document.addEventListener('touchend', () => {
+      if (window.innerWidth > 960) return;
+      wrap.style.transition = 'transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94)';
+      wrap.style.transform = '';
+      setTimeout(() => { wrap.style.transition = ''; }, 600);
+    });
+  })();
 
   // ── Language picker ──
   const translations = {
