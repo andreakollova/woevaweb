@@ -528,6 +528,7 @@
       top: 0; bottom: 0; right: 100%;
       width: 200vw;
       background: var(--lime);
+      pointer-events: none;
     }
     .s-p {
       font-size: 16px; line-height: 1.65;
@@ -1172,6 +1173,7 @@
       top: 0; bottom: 0; left: 100%;
       width: 200vw;
       background: var(--lime);
+      pointer-events: none;
     }
     .city-hl {
       display: inline-block;
@@ -1406,19 +1408,23 @@
       .picks-fan.r.vis { opacity: 1; transform: translateX(0); }
 
       /* ── City section ── */
-      .city-section { padding: 64px 0; overflow: visible; }
-      .city-inner { grid-template-columns: 1fr; gap: 36px; padding: 0 24px; }
+      .city-scroll-trap { position: relative; }
+      .city-scroll-sticky { position: sticky; top: 68px; }
+      .city-ow { overflow: visible !important; }
+      .city-section { padding: 52px 0 44px; overflow: visible; }
+      .city-inner { grid-template-columns: 1fr; gap: 28px; padding: 0 24px; }
       .city-text-col { order: -1; }
       .city-hl-wide::after { display: block; }
       .city-hl-wide { border-radius: 100px 0 0 100px; padding: 4px 14px 4px 10px; }
       .city-h2 { font-size: clamp(24px, 7vw, 34px); }
       .city-tail { display: none; }
-      .city-tags { flex-wrap: nowrap; overflow-x: auto; gap: 8px; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding: 0 24px 4px; width: calc(100% + 0px); }
+      .city-tags { flex-wrap: nowrap; overflow-x: auto; gap: 8px; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding: 0 24px 6px; touch-action: pan-x; }
       .city-tags::-webkit-scrollbar { display: none; }
+      .ct-lime, .ct-dark, .ct-outline { background: var(--black) !important; color: #fff !important; border-color: transparent !important; }
 
       /* ── Generic sections ── */
-      .section { padding: 72px 24px; overflow: hidden; }
-      .two-col { grid-template-columns: 1fr; gap: 40px; }
+      .section { padding: 56px 24px; overflow: hidden; }
+      .two-col { grid-template-columns: 1fr; gap: 36px; }
       .two-col.rev { direction: ltr; }
       .s-h2 .hl::after { display: block; }
       .s-h2 .hl { border-radius: 0 100px 100px 0; padding: 4px 10px 4px 0; }
@@ -1788,7 +1794,9 @@
 </section>
 
 <!-- ══ CITY IN YOUR POCKET ══ -->
-<div style="overflow:hidden;">
+<div class="city-scroll-trap">
+<div class="city-scroll-sticky">
+<div class="city-ow" style="overflow:hidden;">
 <section class="city-section">
   <div class="city-inner">
     <div class="city-tags r">
@@ -1814,9 +1822,11 @@
 </section>
 <div class="city-tail"></div>
 </div>
+</div>
+</div>
 
 <!-- ══ MORE THAN EVENTS ══ -->
-<section class="section" style="overflow:visible;padding-right:0;">
+<section id="viac-section" class="section" style="overflow:visible;padding-right:0;">
   <div class="two-col">
     <div class="r">
       <h2 class="s-h2">
@@ -2343,6 +2353,39 @@
     document.querySelector('.x-icon').style.display = 'none';
   }
   document.querySelectorAll('#mobile-menu a').forEach(a => a.addEventListener('click', closeMenu));
+
+  // ── Mobile: move photo-ticker above viac section ──
+  if (window.innerWidth <= 960) {
+    const ticker = document.querySelector('.photo-ticker');
+    const viac = document.getElementById('viac-section');
+    if (ticker && viac) viac.parentNode.insertBefore(ticker, viac);
+  }
+
+  // ── City tags: scroll trap (vertical scroll → horizontal pills) ──
+  (function() {
+    if (window.innerWidth > 960) return;
+    const trap = document.querySelector('.city-scroll-trap');
+    const tags = document.querySelector('.city-tags');
+    if (!trap || !tags) return;
+    setTimeout(() => {
+      const overflow = tags.scrollWidth - tags.clientWidth;
+      if (overflow <= 0) return;
+      trap.style.height = (window.innerHeight + overflow + 80) + 'px';
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          const rect = trap.getBoundingClientRect();
+          const scrolled = Math.max(0, -(rect.top - 68));
+          const maxScroll = trap.offsetHeight - window.innerHeight + 68;
+          const progress = Math.min(1, scrolled / Math.max(1, maxScroll));
+          tags.scrollLeft = progress * overflow;
+          ticking = false;
+        });
+      }, { passive: true });
+    }, 200);
+  })();
 
   // ── Hero phone: touch tilt on mobile ──
   (function () {
