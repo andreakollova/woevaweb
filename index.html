@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -1589,17 +1589,17 @@
   <div class="nav-right">
     <div class="lang-picker" id="langPicker">
       <button class="lang-btn" id="langBtn" onclick="toggleLang()" aria-label="Language">
-        <span class="lang-flag" id="langFlag">🇬🇧</span>
-        <span id="langCode">EN</span>
+        <span class="lang-flag" id="langFlag">🇸🇰</span>
+        <span id="langCode">SK</span>
         <svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg>
       </button>
       <div class="lang-dropdown">
-        <button class="lang-option" data-lang="sk" onclick="setLang('sk')">
+        <button class="lang-option active" data-lang="sk" onclick="setLang('sk')">
           <span class="lang-flag">🇸🇰</span>
           Slovenčina
           <svg class="lang-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2,7 5.5,10.5 12,3"/></svg>
         </button>
-        <button class="lang-option active" data-lang="en" onclick="setLang('en')">
+        <button class="lang-option" data-lang="en" onclick="setLang('en')">
           <span class="lang-flag">🇬🇧</span>
           English
           <svg class="lang-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2,7 5.5,10.5 12,3"/></svg>
@@ -2591,7 +2591,7 @@
     }
   };
 
-  let currentLang = localStorage.getItem('woeva-lang') || 'en';
+  let currentLang = localStorage.getItem('woeva-lang') || 'sk';
   applyLang(currentLang, false);
 
   function toggleLang() {
