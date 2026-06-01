@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Woeva — Tvoji ľudia sú už vonku.</title>
   <meta name="description" content="Nájdi klub, komunitu, kamošov. Poď aj ty von s appkou Woeva." />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -1558,25 +1560,25 @@
     <img src="LogoWoeva.png" alt="Woeva" />
   </a>
   <ul class="nav-links">
-    <li><a href="#hero">Home</a></li>
-    <li><a href="#organizers">For creators</a></li>
-    <li><a href="#mesta">Cities</a></li>
-    <li><a href="#about">About us</a></li>
+    <li><a href="#hero" data-i18n="nav-home">Home</a></li>
+    <li><a href="#organizers" data-i18n="nav-creators">For creators</a></li>
+    <li><a href="#mesta" data-i18n="nav-cities">Cities</a></li>
+    <li><a href="#about" data-i18n="nav-about">About us</a></li>
   </ul>
   <div class="nav-right">
     <div class="lang-picker" id="langPicker">
       <button class="lang-btn" id="langBtn" onclick="toggleLang()" aria-label="Language">
-        <span class="lang-flag" id="langFlag">🇸🇰</span>
-        <span id="langCode">SK</span>
+        <span class="lang-flag" id="langFlag">🇬🇧</span>
+        <span id="langCode">EN</span>
         <svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg>
       </button>
       <div class="lang-dropdown">
-        <button class="lang-option active" data-lang="sk" onclick="setLang('sk')">
+        <button class="lang-option" data-lang="sk" onclick="setLang('sk')">
           <span class="lang-flag">🇸🇰</span>
           Slovenčina
           <svg class="lang-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2,7 5.5,10.5 12,3"/></svg>
         </button>
-        <button class="lang-option" data-lang="en" onclick="setLang('en')">
+        <button class="lang-option active" data-lang="en" onclick="setLang('en')">
           <span class="lang-flag">🇬🇧</span>
           English
           <svg class="lang-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2,7 5.5,10.5 12,3"/></svg>
@@ -1598,11 +1600,11 @@
 
 <!-- ══ MOBILE MENU ══ -->
 <div id="mobile-menu">
-  <a href="#hero" class="mob-link">Home</a>
-  <a href="#organizers" class="mob-link">For creators</a>
-  <a href="#mesta" class="mob-link">Cities</a>
-  <a href="#about" class="mob-link">About us</a>
-  <a href="#cta" class="mob-cta-btn">Get Started →</a>
+  <a href="#hero" class="mob-link" data-i18n="nav-home">Home</a>
+  <a href="#organizers" class="mob-link" data-i18n="nav-creators">For creators</a>
+  <a href="#mesta" class="mob-link" data-i18n="nav-cities">Cities</a>
+  <a href="#about" class="mob-link" data-i18n="nav-about">About us</a>
+  <a href="#cta" class="mob-cta-btn" data-i18n="nav-started">Get Started →</a>
 </div>
 
 <!-- ══ HERO ══ -->
@@ -1649,11 +1651,11 @@
 
       <h1 class="hero-h1">Let's Live It!<br>Whatever</h1>
 
-      <p class="hero-desc">Objavuj kluby, komunity, kamošov a miesta, ktoré robia tvoje mesto výnimočným. Woeva ti ukáže čo sa práve deje, vždy.</p>
+      <p class="hero-desc" data-i18n="hero-desc">Objavuj kluby, komunity, kamošov a miesta, ktoré robia tvoje mesto výnimočným. Woeva ti ukáže čo sa práve deje, vždy.</p>
 
       <div class="hero-cta-row">
-        <a href="#cta" class="btn-lime">Chcem Woeva</a>
-        <a href="#cta" class="btn-outline">Buď medzi prvými</a>
+        <a href="#cta" class="btn-lime" data-i18n="hero-btn1">Chcem Woeva</a>
+        <a href="#cta" class="btn-outline" data-i18n="hero-btn2">Buď medzi prvými</a>
       </div>
 
       <div class="store-row" style="justify-content:flex-start;">
@@ -1679,7 +1681,7 @@
               </div>
               <div>
                 <div class="fc-label" style="color:#fff;">RODEO Run Club</div>
-                <div class="fc-sub" style="color:rgba(255,255,255,0.82);">Sobota · 8:00 · Hrad</div>
+                <div class="fc-sub" data-i18n="fc1-sub" style="color:rgba(255,255,255,0.82);">Sobota · 8:00 · Hrad</div>
               </div>
             </div>
 
@@ -1690,7 +1692,7 @@
               </div>
               <div>
                 <div class="fc-label">Jazz & Beats Night</div>
-                <div class="fc-sub">Dnes · 20:00 · 31 idú</div>
+                <div class="fc-sub" data-i18n="fc2-sub">Dnes · 20:00 · 31 idú</div>
               </div>
             </div>
 
@@ -1701,7 +1703,7 @@
               </div>
               <div>
                 <div class="fc-label" style="color:#fff;">Cold Brew Morning</div>
-                <div class="fc-sub" style="color:rgba(255,255,255,0.82);">Nedeľa · 9:00 · Free</div>
+                <div class="fc-sub" data-i18n="fc3-sub" style="color:rgba(255,255,255,0.82);">Nedeľa · 9:00 · Free</div>
               </div>
             </div>
 
@@ -1712,7 +1714,7 @@
               </div>
               <div>
                 <div class="fc-label">Piatkovica pri Dunaji</div>
-                <div class="fc-sub">Zaregistrovaný ✓</div>
+                <div class="fc-sub" data-i18n="fc4-sub">Zaregistrovaný ✓</div>
               </div>
             </div>
 
@@ -1737,11 +1739,11 @@
   <div class="mesta-inner">
     <div class="mesta-blob r">
       <div class="mesta-card">
-        <h2>Vyskúšaj aktivity, ktoré sa dejú v<br>tvojom okolí.</h2>
-        <p><strong>Už nikdy ich nezmeškáš s appkou Woeva.</strong> Hidden gems, schované v stories, chatoch a súkromných skupinách. Od dnes ich môžeš navštevovať len tak.</p>
+        <h2 data-i18n-html="mesta-h2">Vyskúšaj aktivity, ktoré sa dejú v<br>tvojom okolí.</h2>
+        <p data-i18n-html="mesta-p"><strong>Už nikdy ich nezmeškáš s appkou Woeva.</strong> Hidden gems, schované v stories, chatoch a súkromných skupinách. Od dnes ich môžeš navštevovať len tak.</p>
       </div>
       <div class="mesta-btn-strip">
-        <a href="#cta" class="mesta-btn">Get Started</a>
+        <a href="#cta" class="mesta-btn" data-i18n="nav-started">Get Started</a>
       </div>
     </div>
     <div class="mesta-phone r d1">
@@ -1782,8 +1784,8 @@
 <section class="picks-section" id="how">
   <div class="picks-inner">
     <div class="r" style="display:table; max-width:100%;">
-      <h2 class="picks-h2"><span class="picks-label">Woeva Picks</span> vyberá a odporúča<br>aktivity, ktoré ti dávajú zmysel</h2>
-      <p class="picks-p" style="width:100%;">Všetko prispôsobené tvojim záujmom, v reálnom čase na reálnom mieste. Woevu môžeš využívať kdekoľvek sa v meste nachádzaš.</p>
+      <h2 class="picks-h2" data-i18n-html="picks-h2"><span class="picks-label">Woeva Picks</span> vyberá a odporúča<br>aktivity, ktoré ti dávajú zmysel</h2>
+      <p class="picks-p" data-i18n="picks-p" style="width:100%;">Všetko prispôsobené tvojim záujmom, v reálnom čase na reálnom mieste. Woevu môžeš využívať kdekoľvek sa v meste nachádzaš.</p>
     </div>
     <div class="picks-fan r d1">
       <div class="picks-fan-circle"></div>
@@ -1814,11 +1816,11 @@
       <span class="city-tag ct-outline">Art Workshop</span>
       <span class="city-tag ct-lime">Dance</span>
       <span class="city-tag ct-outline">Dinner Club</span>
-      <span class="city-tag ct-dark">+ tvoja aktivita</span>
+      <span class="city-tag ct-dark" data-i18n="city-tag-own">+ tvoja aktivita</span>
     </div>
     <div class="r d1 city-text-col">
-      <h2 class="city-h2">Mestský život, <span class="city-hl-wide">v tvojom</span><br><span class="city-hl">vrecku</span></h2>
-      <p class="city-p">Vytvor, nájdi alebo odporúč aktivity v tvojom meste. Woeva je vždy s tebou.</p>
+      <h2 class="city-h2" data-i18n-html="city-h2">Mestský život, <span class="city-hl-wide">v tvojom</span><br><span class="city-hl">vrecku</span></h2>
+      <p class="city-p" data-i18n="city-p">Vytvor, nájdi alebo odporúč aktivity v tvojom meste. Woeva je vždy s tebou.</p>
     </div>
   </div>
 </section>
@@ -1831,10 +1833,10 @@
 <section id="viac-section" class="section" style="overflow:visible;padding-right:0;">
   <div class="two-col">
     <div class="r">
-      <h2 class="s-h2">
+      <h2 class="s-h2" data-i18n-html="viac-h2">
         Viac ako len eventy.<br><span class="line2"><span class="hl">Aktivity</span> s&nbsp;ktorými budeš žiť naplno.</span>
       </h2>
-      <p class="s-p">
+      <p class="s-p" data-i18n="viac-p">
         Objavuj komunity alebo začni klub a zachyť tvoje mesto novým dychom.
       </p>
     </div>
@@ -1842,7 +1844,7 @@
       <div id="reviews-track" style="display:grid;grid-template-rows:repeat(2,auto);grid-auto-flow:column;grid-auto-columns:240px;gap:10px;padding-right:44px;">
         <!-- col 1 -->
         <div style="background:#f4f4f0;border:1px solid #e8e8e4;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;">
-          <div style="font-size:13px;line-height:1.6;color:#111;">"Woeva mi otvorila oči pre veci, ktoré sa dejú priamo za rohom."</div>
+          <div data-i18n="r1" style="font-size:13px;line-height:1.6;color:#111;">"Woeva mi otvorila oči pre veci, ktoré sa dejú priamo za rohom."</div>
           <div style="display:flex;align-items:center;gap:8px;margin-top:auto;">
             <img src="av1.jpg" style="width:30px;height:30px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
             <div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#111;">Klára</div><div style="font-size:10px;color:#888;">Praha</div></div>
@@ -1850,7 +1852,7 @@
           </div>
         </div>
         <div style="background:#f4f4f0;border:1px solid #e8e8e4;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;">
-          <div style="font-size:13px;line-height:1.6;color:#111;">"Konečne jedna app bez toho, aby som sledoval 15 skupín na WhatsApp."</div>
+          <div data-i18n="r2" style="font-size:13px;line-height:1.6;color:#111;">"Konečne jedna app bez toho, aby som sledoval 15 skupín na WhatsApp."</div>
           <div style="display:flex;align-items:center;gap:8px;margin-top:auto;">
             <img src="av3.jpg" style="width:30px;height:30px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
             <div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#111;">Jakub</div><div style="font-size:10px;color:#888;">Bratislava</div></div>
@@ -1858,7 +1860,7 @@
           </div>
         </div>
         <div style="background:#f4f4f0;border:1px solid #e8e8e4;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;">
-          <div style="font-size:13px;line-height:1.6;color:#111;">"Cez Woeva som spustila vlastný run club. Prvý beh — 11 ľudí. Druhý — 28."</div>
+          <div data-i18n="r3" style="font-size:13px;line-height:1.6;color:#111;">"Cez Woeva som spustila vlastný run club. Prvý beh — 11 ľudí. Druhý — 28."</div>
           <div style="display:flex;align-items:center;gap:8px;margin-top:auto;">
             <img src="av2.jpg" style="width:30px;height:30px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
             <div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#111;">Nina</div><div style="font-size:10px;color:#888;">Run Club Organizer</div></div>
@@ -1867,7 +1869,7 @@
         </div>
         <!-- col 2 -->
         <div style="background:#f4f4f0;border:1px solid #e8e8e4;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;">
-          <div style="font-size:13px;line-height:1.6;color:#111;">"Pred Woevou som nikdy nechodila na spontánne veci. Teraz každý týždeň."</div>
+          <div data-i18n="r4" style="font-size:13px;line-height:1.6;color:#111;">"Pred Woevou som nikdy nechodila na spontánne veci. Teraz každý týždeň."</div>
           <div style="display:flex;align-items:center;gap:8px;margin-top:auto;">
             <img src="av1.jpg" style="width:30px;height:30px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
             <div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#111;">Monika</div><div style="font-size:10px;color:#888;">Bratislava</div></div>
@@ -1875,7 +1877,7 @@
           </div>
         </div>
         <div style="background:#f4f4f0;border:1px solid #e8e8e4;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;">
-          <div style="font-size:13px;line-height:1.6;color:#111;">"Za jeden týždeň sme cez Woeva vypredali komunitný workshop bez reklám."</div>
+          <div data-i18n="r5" style="font-size:13px;line-height:1.6;color:#111;">"Za jeden týždeň sme cez Woeva vypredali komunitný workshop bez reklám."</div>
           <div style="display:flex;align-items:center;gap:8px;margin-top:auto;">
             <img src="av1.jpg" style="width:30px;height:30px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
             <div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#111;">Natália</div><div style="font-size:10px;color:#888;">Event Creator</div></div>
@@ -1883,7 +1885,7 @@
           </div>
         </div>
         <div style="background:#f4f4f0;border:1px solid #e8e8e4;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;">
-          <div style="font-size:13px;line-height:1.6;color:#111;">"Woeva nám prináša presne tých ľudí — aktívnych, s ktorými si rozumieme."</div>
+          <div data-i18n="r6" style="font-size:13px;line-height:1.6;color:#111;">"Woeva nám prináša presne tých ľudí — aktívnych, s ktorými si rozumieme."</div>
           <div style="display:flex;align-items:center;gap:8px;margin-top:auto;">
             <img src="av4.jpg" style="width:30px;height:30px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
             <div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#111;">Tomáš</div><div style="font-size:10px;color:#888;">Košice</div></div>
@@ -1892,7 +1894,7 @@
         </div>
         <!-- col 3 -->
         <div style="background:#f4f4f0;border:1px solid #e8e8e4;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;">
-          <div style="font-size:13px;line-height:1.6;color:#111;">"Konečne niečo, čo ma dostane von. Každý víkend nájdem niečo nové."</div>
+          <div data-i18n="r7" style="font-size:13px;line-height:1.6;color:#111;">"Konečne niečo, čo ma dostane von. Každý víkend nájdem niečo nové."</div>
           <div style="display:flex;align-items:center;gap:8px;margin-top:auto;">
             <img src="av2.jpg" style="width:30px;height:30px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
             <div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#111;">Lucia</div><div style="font-size:10px;color:#888;">Bratislava</div></div>
@@ -1900,7 +1902,7 @@
           </div>
         </div>
         <div style="background:#f4f4f0;border:1px solid #e8e8e4;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;">
-          <div style="font-size:13px;line-height:1.6;color:#111;">"Super app pre každého, kto chce zažiť mesto inak ako cez Instagram."</div>
+          <div data-i18n="r8" style="font-size:13px;line-height:1.6;color:#111;">"Super app pre každého, kto chce zažiť mesto inak ako cez Instagram."</div>
           <div style="display:flex;align-items:center;gap:8px;margin-top:auto;">
             <img src="av3.jpg" style="width:30px;height:30px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
             <div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#111;">Peter</div><div style="font-size:10px;color:#888;">Nitra</div></div>
@@ -1908,7 +1910,7 @@
           </div>
         </div>
         <div style="background:#f4f4f0;border:1px solid #e8e8e4;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;">
-          <div style="font-size:13px;line-height:1.6;color:#111;">"Spoznala som cez Woeva ľudí, s ktorými teraz chodím bežať každý týždeň."</div>
+          <div data-i18n="r9" style="font-size:13px;line-height:1.6;color:#111;">"Spoznala som cez Woeva ľudí, s ktorými teraz chodím bežať každý týždeň."</div>
           <div style="display:flex;align-items:center;gap:8px;margin-top:auto;">
             <img src="av1.jpg" style="width:30px;height:30px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
             <div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#111;">Zuzana</div><div style="font-size:10px;color:#888;">Praha</div></div>
@@ -1917,7 +1919,7 @@
         </div>
         <!-- col 4 -->
         <div style="background:#f4f4f0;border:1px solid #e8e8e4;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;">
-          <div style="font-size:13px;line-height:1.6;color:#111;">"Náš yoga klub rástol organicky — 4 členovia, teraz 60. Vďaka Woeva."</div>
+          <div data-i18n="r10" style="font-size:13px;line-height:1.6;color:#111;">"Náš yoga klub rástol organicky — 4 členovia, teraz 60. Vďaka Woeva."</div>
           <div style="display:flex;align-items:center;gap:8px;margin-top:auto;">
             <img src="av2.jpg" style="width:30px;height:30px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
             <div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#111;">Simona</div><div style="font-size:10px;color:#888;">Yoga Organizer</div></div>
@@ -1925,7 +1927,7 @@
           </div>
         </div>
         <div style="background:#f4f4f0;border:1px solid #e8e8e4;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;">
-          <div style="font-size:13px;line-height:1.6;color:#111;">"Nikdy som neveril, že nájdem ľudí na spontánny brunch v nedeľu. Woeva to zmenila."</div>
+          <div data-i18n="r11" style="font-size:13px;line-height:1.6;color:#111;">"Nikdy som neveril, že nájdem ľudí na spontánny brunch v nedeľu. Woeva to zmenila."</div>
           <div style="display:flex;align-items:center;gap:8px;margin-top:auto;">
             <img src="av4.jpg" style="width:30px;height:30px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
             <div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#111;">Marek</div><div style="font-size:10px;color:#888;">Brno</div></div>
@@ -1933,7 +1935,7 @@
           </div>
         </div>
         <div style="background:#f4f4f0;border:1px solid #e8e8e4;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;">
-          <div style="font-size:13px;line-height:1.6;color:#111;">"Woeva je ako tá kamarátka, čo vždy vie o najlepšom evente v meste."</div>
+          <div data-i18n="r12" style="font-size:13px;line-height:1.6;color:#111;">"Woeva je ako tá kamarátka, čo vždy vie o najlepšom evente v meste."</div>
           <div style="display:flex;align-items:center;gap:8px;margin-top:auto;">
             <img src="av1.jpg" style="width:30px;height:30px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
             <div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#111;">Andrea</div><div style="font-size:10px;color:#888;">Bratislava</div></div>
@@ -1942,7 +1944,7 @@
         </div>
         <!-- col 5 -->
         <div style="background:#f4f4f0;border:1px solid #e8e8e4;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;">
-          <div style="font-size:13px;line-height:1.6;color:#111;">"Fotil som pre Woeva event a spoznal som tam ľudí, s ktorými teraz robím projekty."</div>
+          <div data-i18n="r13" style="font-size:13px;line-height:1.6;color:#111;">"Fotil som pre Woeva event a spoznal som tam ľudí, s ktorými teraz robím projekty."</div>
           <div style="display:flex;align-items:center;gap:8px;margin-top:auto;">
             <img src="av3.jpg" style="width:30px;height:30px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
             <div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#111;">Richard</div><div style="font-size:10px;color:#888;">Photographer</div></div>
@@ -1950,7 +1952,7 @@
           </div>
         </div>
         <div style="background:#f4f4f0;border:1px solid #e8e8e4;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;">
-          <div style="font-size:13px;line-height:1.6;color:#111;">"Prišla som do novej práce a Woeva mi pomohla spoznať ľudí mimo kancelárie."</div>
+          <div data-i18n="r14" style="font-size:13px;line-height:1.6;color:#111;">"Prišla som do novej práce a Woeva mi pomohla spoznať ľudí mimo kancelárie."</div>
           <div style="display:flex;align-items:center;gap:8px;margin-top:auto;">
             <img src="av2.jpg" style="width:30px;height:30px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
             <div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#111;">Veronika</div><div style="font-size:10px;color:#888;">Košice</div></div>
@@ -1958,7 +1960,7 @@
           </div>
         </div>
         <div style="background:#f4f4f0;border:1px solid #e8e8e4;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;">
-          <div style="font-size:13px;line-height:1.6;color:#111;">"Booking je tak jednoduchý, že naši členovia chodia bez toho, aby museli niečo riešiť."</div>
+          <div data-i18n="r15" style="font-size:13px;line-height:1.6;color:#111;">"Booking je tak jednoduchý, že naši členovia chodia bez toho, aby museli niečo riešiť."</div>
           <div style="display:flex;align-items:center;gap:8px;margin-top:auto;">
             <img src="av3.jpg" style="width:30px;height:30px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
             <div style="flex:1;"><div style="font-size:12px;font-weight:700;color:#111;">Daniel</div><div style="font-size:10px;color:#888;">Club Organizer</div></div>
@@ -1994,17 +1996,17 @@
       <img src="ticket.png" alt="Woeva ticket" style="width:100%;max-width:320px;border-radius:24px;display:block;" />
     </div>
     <div class="r d1">
-      <h2 class="easy-h2">Je to také easy.</h2>
+      <h2 class="easy-h2" data-i18n="easy-h2">Je to také easy.</h2>
       <div class="easy-steps">
         <svg class="easy-snake-svg" viewBox="0 0 400 230" fill="none">
           <path id="snake-path" d="M 520 24 H 100 C 45 24 45 82 100 82 H 520 C 575 82 575 140 520 140 H 100 C 45 140 45 198 100 198 H -300" stroke="#b9ff00" stroke-width="46" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <div class="easy-step"><span>1.</span> Zaregistruješ sa.</div>
-        <div class="easy-step"><span>2.</span> Bookneš aktivitu</div>
-        <div class="easy-step"><span>3.</span> Dostaneš lístok</div>
-        <div class="easy-step"><span>4.</span> Overíš QR pri vstupe</div>
+        <div class="easy-step" data-i18n-html="easy-step1"><span>1.</span> Zaregistruješ sa.</div>
+        <div class="easy-step" data-i18n-html="easy-step2"><span>2.</span> Bookneš aktivitu</div>
+        <div class="easy-step" data-i18n-html="easy-step3"><span>3.</span> Dostaneš lístok</div>
+        <div class="easy-step" data-i18n-html="easy-step4"><span>4.</span> Overíš QR pri vstupe</div>
       </div>
-      <p class="easy-desc">Objavuj komunity alebo založ kluby s ktorými chytí tvoje mesto nový dych.</p>
+      <p class="easy-desc" data-i18n="easy-desc">Objavuj komunity alebo založ kluby s ktorými chytí tvoje mesto nový dych.</p>
       <a href="#" style="display:inline-block;transition:opacity 0.2s,transform 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
         <img src="apple-wallet-badge.png" alt="Add to Apple Wallet" style="height:44px;display:block;" />
       </a>
@@ -2027,41 +2029,41 @@
 
   <div class="org-inner">
     <div class="org-plus">+</div>
-    <h2>Rád organizuješ?<br>Vytvor niečo vlastné</h2>
-    <p class="org-desc">Staň sa woeva creatorom a vytváraj nezabudnuteľné zážitky pre ľudí v tvojom meste. <b>Stačí stiahnuť appku a začať tvoriť.</b></p>
+    <h2 data-i18n-html="org-h2">Rád organizuješ?<br>Vytvor niečo vlastné</h2>
+    <p class="org-desc" data-i18n-html="org-desc">Staň sa woeva creatorom a vytváraj nezabudnuteľné zážitky pre ľudí v tvojom meste. <b>Stačí stiahnuť appku a začať tvoriť.</b></p>
 
     <div class="org-gains">
-      <div class="org-gains-title">Čo získaš?</div>
+      <div class="org-gains-title" data-i18n="org-gains-title">Čo získaš?</div>
       <div class="org-gains-list">
         <div class="org-gain">
           <div class="org-gain-ico">
             <svg viewBox="0 0 16 16"><path d="M8 1.5c-2.2 0-4 1.3-4 3 0 1.3.9 2.4 2.2 2.8V13h3.6V7.3C11.1 6.9 12 5.8 12 4.5c0-1.7-1.8-3-4-3z"/><line x1="5.5" y1="4.5" x2="10.5" y2="4.5"/></svg>
           </div>
-          Žiadne vstupné poplatky
+          <span data-i18n="org-gain1">Žiadne vstupné poplatky</span>
         </div>
         <div class="org-gain">
           <div class="org-gain-ico">
             <svg viewBox="0 0 16 16"><circle cx="6" cy="5" r="2.5"/><path d="M1 14c0-2.8 2.2-5 5-5"/><circle cx="12" cy="5.5" r="2"/><path d="M9.5 13c0-1.8 1.1-3.5 3-3.5 1 0 2.5.6 2.5 2"/></svg>
           </div>
-          Noví ľudia ťa nájdu
+          <span data-i18n="org-gain2">Noví ľudia ťa nájdu</span>
         </div>
         <div class="org-gain">
           <div class="org-gain-ico">
             <svg viewBox="0 0 16 16"><path d="M8 1L14 3.5v4.5c0 3.2-2.6 5.4-6 6-3.4-.6-6-2.8-6-6V3.5z"/><polyline points="5,8 7,10 11,6"/></svg>
           </div>
-          Overené platby
+          <span data-i18n="org-gain3">Overené platby</span>
         </div>
         <div class="org-gain">
           <div class="org-gain-ico">
             <svg viewBox="0 0 16 16"><rect x="1.5" y="1.5" width="5" height="5" rx="0.8"/><rect x="2.5" y="2.5" width="3" height="3" rx="0.3" fill="rgba(255,255,255,0.15)" stroke="none"/><rect x="1.5" y="9.5" width="5" height="5" rx="0.8"/><rect x="2.5" y="10.5" width="3" height="3" rx="0.3" fill="rgba(255,255,255,0.15)" stroke="none"/><rect x="9.5" y="1.5" width="5" height="5" rx="0.8"/><rect x="10.5" y="2.5" width="3" height="3" rx="0.3" fill="rgba(255,255,255,0.15)" stroke="none"/><rect x="9.5" y="9.5" width="2" height="2" rx="0.3"/><rect x="12.5" y="9.5" width="2" height="2" rx="0.3"/><rect x="9.5" y="12.5" width="2" height="2" rx="0.3"/><rect x="12.5" y="12.5" width="2" height="2" rx="0.3"/></svg>
           </div>
-          QR Check ins
+          <span data-i18n="org-gain4">QR Check ins</span>
         </div>
         <div class="org-gain full">
           <div class="org-gain-ico">
             <svg viewBox="0 0 16 16"><path d="M8 2a4.5 4.5 0 0 1 4.5 4.5c0 3.2 1.5 4 2.5 5H1c1-1 2.5-1.8 2.5-5A4.5 4.5 0 0 1 8 2z"/><line x1="8" y1="2" x2="8" y2="0.5"/><path d="M6.2 14.5a1.8 1.8 0 0 0 3.6 0"/></svg>
           </div>
-          Notifikácie pre tvojich členov
+          <span data-i18n="org-gain5">Notifikácie pre tvojich členov</span>
         </div>
       </div>
     </div>
@@ -2070,7 +2072,7 @@
 </section>
 <div style="padding-bottom:40px;background:var(--off-white);">
   <div class="org-btn-strip">
-    <a href="#cta" class="org-join-btn">+ Pridať sa ako creator</a>
+    <a href="#cta" class="org-join-btn" data-i18n="org-join-btn">+ Pridať sa ako creator</a>
   </div>
 </div>
 </div>
@@ -2078,14 +2080,14 @@
 <!-- ══ CITIES ══ -->
 <section class="section" id="cities" style="padding-top:40px;">
   <div class="cities-inner">
-    <h2 class="r">
+    <h2 class="r" data-i18n-html="cities-h2">
       Bratislava, Praha dnes.<br>
       <span class="hl">Viedeň a Londýn zajtra.</span>
     </h2>
-    <p class="r d1">
+    <p class="r d1" data-i18n="cities-p">
       Aktuálne spúšťame naše platformy mesto po meste. Chceme aby každé mesto malo svoju jedinečnú vôňu a tých správnych ľudí, ktorí to žijú.
     </p>
-    <a href="mailto:admin@woeva.com" class="btn-black r d2">Chcem odporúčať mesto</a>
+    <a href="mailto:admin@woeva.com" class="btn-black r d2" data-i18n="cities-btn">Chcem odporúčať mesto</a>
   </div>
 </section>
 
@@ -2131,42 +2133,42 @@
       <details class="faq-item">
         <summary>
           <span class="faq-num">1.</span>
-          <span class="faq-q">Ako funguje Woeva?</span>
+          <span class="faq-q" data-i18n="faq-q1">Ako funguje Woeva?</span>
           <svg class="faq-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="3,5 8,11 13,5"/></svg>
         </summary>
-        <div class="faq-answer">Woeva ti ukáže aktivity, eventy a komunity vo tvojom meste v reálnom čase. Stiahni appku, vytvor profil a objavuj čo sa deje okolo teba.</div>
+        <div class="faq-answer" data-i18n="faq-a1">Woeva ti ukáže aktivity, eventy a komunity vo tvojom meste v reálnom čase. Stiahni appku, vytvor profil a objavuj čo sa deje okolo teba.</div>
       </details>
       <details class="faq-item">
         <summary>
           <span class="faq-num">2.</span>
-          <span class="faq-q">Musím byť organizátor, aby som mohol používať Woevu?</span>
+          <span class="faq-q" data-i18n="faq-q2">Musím byť organizátor, aby som mohol používať Woevu?</span>
           <svg class="faq-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="3,5 8,11 13,5"/></svg>
         </summary>
-        <div class="faq-answer">Nie. Woevu môžeš používať len ako účastník – objavovať aktivity a bookovať miesta. Ak chceš vytvárať vlastné eventy, môžeš sa kedykoľvek stať creatorom.</div>
+        <div class="faq-answer" data-i18n="faq-a2">Nie. Woevu môžeš používať len ako účastník – objavovať aktivity a bookovať miesta. Ak chceš vytvárať vlastné eventy, môžeš sa kedykoľvek stať creatorom.</div>
       </details>
       <details class="faq-item">
         <summary>
           <span class="faq-num">3.</span>
-          <span class="faq-q">Ako si rezervujem miesto na aktivitu alebo event?</span>
+          <span class="faq-q" data-i18n="faq-q3">Ako si rezervujem miesto na aktivitu alebo event?</span>
           <svg class="faq-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="3,5 8,11 13,5"/></svg>
         </summary>
-        <div class="faq-answer">V appke vyber aktivitu, klikni na Booknúť a potvrď rezerváciu. Dostaneš digitálny lístok s QR kódom priamo do appky.</div>
+        <div class="faq-answer" data-i18n="faq-a3">V appke vyber aktivitu, klikni na Booknúť a potvrď rezerváciu. Dostaneš digitálny lístok s QR kódom priamo do appky.</div>
       </details>
       <details class="faq-item">
         <summary>
           <span class="faq-num">4.</span>
-          <span class="faq-q">Môžem vytvoriť vlastnú aktivitu alebo komunitu?</span>
+          <span class="faq-q" data-i18n="faq-q4">Môžem vytvoriť vlastnú aktivitu alebo komunitu?</span>
           <svg class="faq-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="3,5 8,11 13,5"/></svg>
         </summary>
-        <div class="faq-answer">Áno! Ako Woeva creator môžeš vytvárať eventy, budovať komunitu a spravovať registrácie priamo v appke. Bez poplatkov za vstup.</div>
+        <div class="faq-answer" data-i18n="faq-a4">Áno! Ako Woeva creator môžeš vytvárať eventy, budovať komunitu a spravovať registrácie priamo v appke. Bez poplatkov za vstup.</div>
       </details>
       <details class="faq-item">
         <summary>
           <span class="faq-num">5.</span>
-          <span class="faq-q">Je používanie Woevy zadarmo?</span>
+          <span class="faq-q" data-i18n="faq-q5">Je používanie Woevy zadarmo?</span>
           <svg class="faq-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="3,5 8,11 13,5"/></svg>
         </summary>
-        <div class="faq-answer">Stiahnutie a používanie appky je zadarmo. Niektoré platené eventy môžu mať vstupné, ale Woeva si neúčtuje žiadne extra poplatky.</div>
+        <div class="faq-answer" data-i18n="faq-a5">Stiahnutie a používanie appky je zadarmo. Niektoré platené eventy môžu mať vstupné, ale Woeva si neúčtuje žiadne extra poplatky.</div>
       </details>
     </div>
   </div>
@@ -2179,7 +2181,7 @@
       <div class="footer-logo">
         <img src="mainlogo.png" alt="Woeva" />
       </div>
-      <p class="footer-tag">LET'S DO IT! WHATEVER.<br>Tvoji ľudia sú už vonku.</p>
+      <p class="footer-tag" data-i18n-html="footer-tag">LET'S DO IT! WHATEVER.<br>Tvoji ľudia sú už vonku.</p>
       <div class="footer-stores">
         <a href="#" style="display:block;transition:opacity 0.2s,transform 0.2s;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">
           <img src="appstore-badge.png" alt="Download on the App Store" style="height:32px;display:block;" />
@@ -2190,25 +2192,25 @@
       </div>
     </div>
     <div>
-      <p class="footer-col-t">O NÁS</p>
+      <p class="footer-col-t" data-i18n="footer-col-about">O NÁS</p>
       <ul class="footer-links">
         <li><a href="mailto:admin@woeva.com">admin@woeva.com</a></li>
         <li><a href="https://instagram.com/letsdowoeva" target="_blank">@letsdowoeva</a></li>
       </ul>
     </div>
     <div>
-      <p class="footer-col-t">NAVIGÁCIA</p>
+      <p class="footer-col-t" data-i18n="footer-col-nav">NAVIGÁCIA</p>
       <ul class="footer-links">
-        <li><a href="#how">Ako to funguje?</a></li>
-        <li><a href="#organizers">Pre organizátorov</a></li>
-        <li><a href="#mesta">Mestá</a></li>
+        <li><a href="#how" data-i18n="footer-nav-how">Ako to funguje?</a></li>
+        <li><a href="#organizers" data-i18n="footer-nav-org">Pre organizátorov</a></li>
+        <li><a href="#mesta" data-i18n="footer-nav-cities">Mestá</a></li>
       </ul>
     </div>
     <div>
-      <p class="footer-col-t">PRÁVNE</p>
+      <p class="footer-col-t" data-i18n="footer-col-legal">PRÁVNE</p>
       <ul class="footer-links">
-        <li><a href="/privacy">Ochrana súkromia</a></li>
-        <li><a href="/terms">Podmienky používania</a></li>
+        <li><a href="/privacy" data-i18n="footer-privacy">Ochrana súkromia</a></li>
+        <li><a href="/terms" data-i18n="footer-terms">Podmienky používania</a></li>
       </ul>
     </div>
   </div>
@@ -2417,16 +2419,158 @@
   // ── Language picker ──
   const translations = {
     sk: {
-      'nav-home': 'Home', 'nav-creators': 'For creators', 'nav-cities': 'Cities', 'nav-about': 'About us',
-      'nav-download': 'Download App', 'nav-started': 'Get Started',
+      // Nav
+      'nav-home': 'Domov', 'nav-creators': 'Pre creatorov', 'nav-cities': 'Mestá', 'nav-about': 'O nás',
+      'nav-download': 'Stiahnuť appku', 'nav-started': 'Začni teraz →',
+      // Hero
+      'hero-desc': 'Objavuj kluby, komunity, kamošov a miesta, ktoré robia tvoje mesto výnimočným. Woeva ti ukáže čo sa práve deje, vždy.',
+      'hero-btn1': 'Chcem Woeva', 'hero-btn2': 'Buď medzi prvými',
+      // Floating cards
+      'fc1-sub': 'Sobota · 8:00 · Hrad', 'fc2-sub': 'Dnes · 20:00 · 31 idú',
+      'fc3-sub': 'Nedeľa · 9:00 · Free', 'fc4-sub': 'Zaregistrovaný ✓',
+      // Mesta
+      'mesta-h2': 'Vyskúšaj aktivity, ktoré sa dejú v<br>tvojom okolí.',
+      'mesta-p': '<strong>Už nikdy ich nezmeškáš s appkou Woeva.</strong> Hidden gems, schované v stories, chatoch a súkromných skupinách. Od dnes ich môžeš navštevovať len tak.',
+      // Picks
+      'picks-h2': '<span class="picks-label">Woeva Picks</span> vyberá a odporúča<br>aktivity, ktoré ti dávajú zmysel',
+      'picks-p': 'Všetko prispôsobené tvojim záujmom, v reálnom čase na reálnom mieste. Woevu môžeš využívať kdekoľvek sa v meste nachádzaš.',
+      // City
+      'city-h2': 'Mestský život, <span class="city-hl-wide">v tvojom</span><br><span class="city-hl">vrecku</span>',
+      'city-p': 'Vytvor, nájdi alebo odporúč aktivity v tvojom meste. Woeva je vždy s tebou.',
+      'city-tag-own': '+ tvoja aktivita',
+      // Viac
+      'viac-h2': 'Viac ako len eventy.<br><span class="line2"><span class="hl">Aktivity</span> s&nbsp;ktorými budeš žiť naplno.</span>',
+      'viac-p': 'Objavuj komunity alebo začni klub a zachyť tvoje mesto novým dychom.',
+      // Reviews
+      'r1': '"Woeva mi otvorila oči pre veci, ktoré sa dejú priamo za rohom."',
+      'r2': '"Konečne jedna app bez toho, aby som sledoval 15 skupín na WhatsApp."',
+      'r3': '"Cez Woeva som spustila vlastný run club. Prvý beh — 11 ľudí. Druhý — 28."',
+      'r4': '"Pred Woevou som nikdy nechodila na spontánne veci. Teraz každý týždeň."',
+      'r5': '"Za jeden týždeň sme cez Woeva vypredali komunitný workshop bez reklám."',
+      'r6': '"Woeva nám prináša presne tých ľudí — aktívnych, s ktorými si rozumieme."',
+      'r7': '"Konečne niečo, čo ma dostane von. Každý víkend nájdem niečo nové."',
+      'r8': '"Super app pre každého, kto chce zažiť mesto inak ako cez Instagram."',
+      'r9': '"Spoznala som cez Woeva ľudí, s ktorými teraz chodím bežať každý týždeň."',
+      'r10': '"Náš yoga klub rástol organicky — 4 členovia, teraz 60. Vďaka Woeva."',
+      'r11': '"Nikdy som neveril, že nájdem ľudí na spontánny brunch v nedeľu. Woeva to zmenila."',
+      'r12': '"Woeva je ako tá kamarátka, čo vždy vie o najlepšom evente v meste."',
+      'r13': '"Fotil som pre Woeva event a spoznal som tam ľudí, s ktorými teraz robím projekty."',
+      'r14': '"Prišla som do novej práce a Woeva mi pomohla spoznať ľudí mimo kancelárie."',
+      'r15': '"Booking je tak jednoduchý, že naši členovia chodia bez toho, aby museli niečo riešiť."',
+      // Easy
+      'easy-h2': 'Je to také easy.',
+      'easy-step1': '<span>1.</span> Zaregistruješ sa.',
+      'easy-step2': '<span>2.</span> Bookneš aktivitu',
+      'easy-step3': '<span>3.</span> Dostaneš lístok',
+      'easy-step4': '<span>4.</span> Overíš QR pri vstupe',
+      'easy-desc': 'Objavuj komunity alebo založ kluby s ktorými chytí tvoje mesto nový dych.',
+      // Org
+      'org-h2': 'Rád organizuješ?<br>Vytvor niečo vlastné',
+      'org-desc': 'Staň sa woeva creatorom a vytváraj nezabudnuteľné zážitky pre ľudí v tvojom meste. <b>Stačí stiahnuť appku a začať tvoriť.</b>',
+      'org-gains-title': 'Čo získaš?',
+      'org-gain1': 'Žiadne vstupné poplatky', 'org-gain2': 'Noví ľudia ťa nájdu',
+      'org-gain3': 'Overené platby', 'org-gain4': 'QR Check ins',
+      'org-gain5': 'Notifikácie pre tvojich členov',
+      'org-join-btn': '+ Pridať sa ako creator',
+      // Cities
+      'cities-h2': 'Bratislava, Praha dnes.<br><span class="hl">Viedeň a Londýn</span> zajtra.',
+      'cities-p': 'Aktuálne spúšťame naše platformy mesto po meste. Chceme aby každé mesto malo svoju jedinečnú vôňu a tých správnych ľudí, ktorí to žijú.',
+      'cities-btn': 'Chcem odporúčať mesto',
+      // FAQ
+      'faq-q1': 'Ako funguje Woeva?',
+      'faq-a1': 'Woeva ti ukáže aktivity, eventy a komunity vo tvojom meste v reálnom čase. Stiahni appku, vytvor profil a objavuj čo sa deje okolo teba.',
+      'faq-q2': 'Musím byť organizátor, aby som mohol používať Woevu?',
+      'faq-a2': 'Nie. Woevu môžeš používať len ako účastník – objavovať aktivity a bookovať miesta. Ak chceš vytvárať vlastné eventy, môžeš sa kedykoľvek stať creatorom.',
+      'faq-q3': 'Ako si rezervujem miesto na aktivitu alebo event?',
+      'faq-a3': 'V appke vyber aktivitu, klikni na Booknúť a potvrď rezerváciu. Dostaneš digitálny lístok s QR kódom priamo do appky.',
+      'faq-q4': 'Môžem vytvoriť vlastnú aktivitu alebo komunitu?',
+      'faq-a4': 'Áno! Ako Woeva creator môžeš vytvárať eventy, budovať komunitu a spravovať registrácie priamo v appke. Bez poplatkov za vstup.',
+      'faq-q5': 'Je používanie Woevy zadarmo?',
+      'faq-a5': 'Stiahnutie a používanie appky je zadarmo. Niektoré platené eventy môžu mať vstupné, ale Woeva si neúčtuje žiadne extra poplatky.',
+      // Footer
+      'footer-tag': 'LET\'S DO IT! WHATEVER.<br>Tvoji ľudia sú už vonku.',
+      'footer-col-about': 'O NÁS', 'footer-col-nav': 'NAVIGÁCIA', 'footer-col-legal': 'PRÁVNE',
+      'footer-nav-how': 'Ako to funguje?', 'footer-nav-org': 'Pre organizátorov', 'footer-nav-cities': 'Mestá',
+      'footer-privacy': 'Ochrana súkromia', 'footer-terms': 'Podmienky používania',
     },
     en: {
+      // Nav
       'nav-home': 'Home', 'nav-creators': 'For creators', 'nav-cities': 'Cities', 'nav-about': 'About us',
-      'nav-download': 'Download App', 'nav-started': 'Get Started',
+      'nav-download': 'Download App', 'nav-started': 'Get Started →',
+      // Hero
+      'hero-desc': 'Discover clubs, communities, friends and places that make your city extraordinary. Woeva shows you what\'s happening right now, always.',
+      'hero-btn1': 'I want Woeva', 'hero-btn2': 'Be among the first',
+      // Floating cards
+      'fc1-sub': 'Saturday · 8:00 · Castle', 'fc2-sub': 'Today · 20:00 · 31 going',
+      'fc3-sub': 'Sunday · 9:00 · Free', 'fc4-sub': 'Registered ✓',
+      // Mesta
+      'mesta-h2': 'Try activities happening<br>right around you.',
+      'mesta-p': '<strong>Never miss them again with the Woeva app.</strong> Hidden gems buried in stories, chats and private groups. From now on, you can just show up.',
+      // Picks
+      'picks-h2': '<span class="picks-label">Woeva Picks</span> curates and recommends<br>activities that make sense for you',
+      'picks-p': 'Everything tailored to your interests, in real time at a real place. Use Woeva wherever you are in the city.',
+      // City
+      'city-h2': 'City life, <span class="city-hl-wide">in your</span><br><span class="city-hl">pocket</span>',
+      'city-p': 'Create, find or recommend activities in your city. Woeva is always with you.',
+      'city-tag-own': '+ your activity',
+      // Viac
+      'viac-h2': 'More than just events.<br><span class="line2"><span class="hl">Activities</span> to live life fully.</span>',
+      'viac-p': 'Discover communities or start a club and give your city a new breath of life.',
+      // Reviews
+      'r1': '"Woeva opened my eyes to things happening right around the corner."',
+      'r2': '"Finally one app without having to follow 15 WhatsApp groups."',
+      'r3': '"Through Woeva I launched my own run club. First run — 11 people. Second — 28."',
+      'r4': '"Before Woeva I never went to spontaneous things. Now every week."',
+      'r5': '"In one week we sold out a community workshop through Woeva without any ads."',
+      'r6': '"Woeva brings us exactly the right people — active, like-minded ones."',
+      'r7': '"Finally something that gets me outside. Every weekend I find something new."',
+      'r8': '"Great app for anyone who wants to experience the city beyond Instagram."',
+      'r9': '"I met people through Woeva who I now go running with every week."',
+      'r10': '"Our yoga club grew organically — 4 members, now 60. Thanks to Woeva."',
+      'r11': '"I never thought I\'d find people for a spontaneous Sunday brunch. Woeva changed that."',
+      'r12': '"Woeva is like that friend who always knows the best event in town."',
+      'r13': '"I shot a Woeva event and met people I\'m now doing projects with."',
+      'r14': '"I started a new job and Woeva helped me meet people outside the office."',
+      'r15': '"Booking is so simple that our members just show up without having to think about it."',
+      // Easy
+      'easy-h2': 'It\'s that easy.',
+      'easy-step1': '<span>1.</span> Sign up.',
+      'easy-step2': '<span>2.</span> Book an activity',
+      'easy-step3': '<span>3.</span> Get your ticket',
+      'easy-step4': '<span>4.</span> Scan QR at the door',
+      'easy-desc': 'Discover communities or start clubs that give your city a new energy.',
+      // Org
+      'org-h2': 'Love organising?<br>Create something of your own',
+      'org-desc': 'Become a Woeva creator and craft unforgettable experiences for people in your city. <b>Just download the app and start creating.</b>',
+      'org-gains-title': 'What you get?',
+      'org-gain1': 'No entry fees', 'org-gain2': 'New people will find you',
+      'org-gain3': 'Verified payments', 'org-gain4': 'QR Check-ins',
+      'org-gain5': 'Notifications for your members',
+      'org-join-btn': '+ Join as a creator',
+      // Cities
+      'cities-h2': 'Bratislava, Prague today.<br><span class="hl">Vienna and London</span> tomorrow.',
+      'cities-p': 'We\'re launching city by city. We want every city to have its own unique flavour and the right people who live it.',
+      'cities-btn': 'Suggest a city',
+      // FAQ
+      'faq-q1': 'How does Woeva work?',
+      'faq-a1': 'Woeva shows you activities, events and communities in your city in real time. Download the app, create a profile and discover what\'s happening around you.',
+      'faq-q2': 'Do I need to be an organiser to use Woeva?',
+      'faq-a2': 'No. You can use Woeva purely as a participant — discover activities and book spots. If you want to create your own events, you can become a creator at any time.',
+      'faq-q3': 'How do I book a spot for an activity or event?',
+      'faq-a3': 'In the app, select an activity, tap Book and confirm your reservation. You\'ll get a digital ticket with a QR code directly in the app.',
+      'faq-q4': 'Can I create my own activity or community?',
+      'faq-a4': 'Yes! As a Woeva creator you can create events, build a community and manage registrations directly in the app. No entry fees.',
+      'faq-q5': 'Is Woeva free to use?',
+      'faq-a5': 'Downloading and using the app is free. Some paid events may have a ticket price, but Woeva charges no extra fees.',
+      // Footer
+      'footer-tag': 'LET\'S DO IT! WHATEVER.<br>Your people are already out there.',
+      'footer-col-about': 'ABOUT US', 'footer-col-nav': 'NAVIGATION', 'footer-col-legal': 'LEGAL',
+      'footer-nav-how': 'How it works?', 'footer-nav-org': 'For organisers', 'footer-nav-cities': 'Cities',
+      'footer-privacy': 'Privacy policy', 'footer-terms': 'Terms of service',
     }
   };
 
-  let currentLang = localStorage.getItem('woeva-lang') || 'sk';
+  let currentLang = localStorage.getItem('woeva-lang') || 'en';
   applyLang(currentLang, false);
 
   function toggleLang() {
@@ -2441,6 +2585,7 @@
   }
 
   function applyLang(lang) {
+    const t = translations[lang] || translations.en;
     const flagMap = { sk: '🇸🇰', en: '🇬🇧' };
     const codeMap = { sk: 'SK', en: 'EN' };
     document.getElementById('langFlag').textContent = flagMap[lang];
@@ -2448,7 +2593,15 @@
     document.querySelectorAll('.lang-option').forEach(opt => {
       opt.classList.toggle('active', opt.dataset.lang === lang);
     });
-    document.documentElement.lang = lang === 'sk' ? 'sk' : 'en';
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (t[key] !== undefined) el.textContent = t[key];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const key = el.dataset.i18nHtml;
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
   }
 
 
