@@ -15,21 +15,8 @@
       padding: 48px 24px 80px;
       line-height: 1.7;
     }
-    .logo {
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      color: #111;
-      margin-bottom: 40px;
-      display: block;
-      text-decoration: none;
-    }
-    .logo span {
-      display: inline-block;
-      background: #C8FF00;
-      border-radius: 6px;
-      padding: 2px 8px;
-    }
+    .logo { display: block; margin-bottom: 40px; }
+    .logo img { height: 36px; display: block; }
     h1 {
       font-size: 28px;
       font-weight: 800;
@@ -47,20 +34,31 @@
       letter-spacing: 0.5px;
       text-transform: uppercase;
       color: #111;
-      margin-top: 32px;
+      margin-top: 36px;
       margin-bottom: 10px;
     }
-    p, li {
-      font-size: 15px;
-      color: #444;
-    }
+    p { font-size: 15px; color: #444; margin-bottom: 10px; }
     ul {
       padding-left: 20px;
       display: flex;
       flex-direction: column;
       gap: 6px;
+      margin-bottom: 10px;
     }
+    li { font-size: 15px; color: #444; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+    th { text-align: left; padding: 8px 10px; background: #f5f5f5; color: #111; font-weight: 600; border: 1px solid #e0e0e0; }
+    td { padding: 8px 10px; border: 1px solid #e0e0e0; color: #444; vertical-align: top; }
     a { color: #111; }
+    .operator-box {
+      background: #f9f9f9;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-size: 15px;
+      color: #444;
+      line-height: 1.8;
+    }
     footer {
       margin-top: 60px;
       font-size: 13px;
@@ -71,63 +69,168 @@
   </style>
 </head>
 <body>
-  <a class="logo" href="https://woeva.com"><span>Woeva</span></a>
+  <a class="logo" href="https://woeva.com">
+    <img src="/mainlogo.png" alt="Woeva" />
+  </a>
 
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: June 2026</p>
+  <p class="updated">Last updated: 1 June 2026</p>
 
-  <p>Sportqo s. r. o. ("we", "us", "our"), operator of the Woeva mobile application, explains in this policy what data we collect and how we use it.</p>
+  <p>This Privacy Policy describes how <strong>Sportqo s. r. o.</strong>, operating under the brand name <strong>Woeva</strong> (the "Controller", "we", "us", "our"), collects, uses, and protects personal data of users of the Woeva mobile application and website (collectively, the "Service"). We process personal data in accordance with Regulation (EU) 2016/679 of the European Parliament and of the Council (GDPR) and the applicable laws of the Slovak Republic.</p>
 
-  <h2>Data We Collect</h2>
-  <ul>
-    <li><strong>Account data:</strong> name, email address, profile photo</li>
-    <li><strong>Location:</strong> city and approximate GPS location (only when you grant permission) to show nearby events</li>
-    <li><strong>Device token:</strong> push notification token to send you event updates</li>
-    <li><strong>Content:</strong> events you create, clubs you manage, messages you send in event chats</li>
-    <li><strong>Usage:</strong> events you join or leave, reviews you leave</li>
-  </ul>
-
-  <h2>How We Use Your Data</h2>
-  <ul>
-    <li>To provide and personalise the app experience</li>
-    <li>To send push and email notifications about events you are attending or managing</li>
-    <li>To process payments via Stripe (payment data is handled solely by Stripe and never stored by us)</li>
-    <li>To show your profile and content to other users in the context of events and clubs</li>
-  </ul>
-
-  <h2>Data Sharing</h2>
-  <ul>
-    <li>We do not sell your personal data</li>
-    <li>Stripe processes payment data under their own privacy policy</li>
-    <li>Supabase provides our database and authentication infrastructure</li>
-    <li>Push notifications are delivered via Expo's push service</li>
-  </ul>
-
-  <h2>Your Rights</h2>
-  <ul>
-    <li>You may edit or delete your profile at any time in Settings → Profile</li>
-    <li>You may delete your account and all associated data in Settings → Delete account</li>
-    <li>You may revoke location and notification permissions in your device settings at any time</li>
-  </ul>
-
-  <h2>Data Retention</h2>
-  <p>Deleting your account permanently removes your profile, events, clubs, messages, and all associated data within 30 days.</p>
-
-  <h2>Contact</h2>
-  <p>For privacy questions contact us at: <a href="mailto:admin@woeva.com">admin@woeva.com</a><br>
-  Phone: <a href="tel:+421915786829">+421 915 786 829</a></p>
-
-  <h2>Operator</h2>
-  <p>
+  <h2>1. Controller Details</h2>
+  <div class="operator-box">
     Sportqo s. r. o.<br>
     Mudrochova 7480/15, 831 06 Bratislava - mestská časť Rača<br>
-    IČO: 56132433<br>
-    DIČ: 2122213775<br>
-    IČ DPH: SK2122213775 (registrácia podľa §4 od 1. 5. 2025)
+    Slovak Republic<br>
+    IČO: 56132433 &nbsp;|&nbsp; DIČ: 2122213775<br>
+    IČ DPH: SK2122213775 (registered pursuant to §4, effective 1 May 2025)<br>
+    Email: <a href="mailto:admin@woeva.com">admin@woeva.com</a><br>
+    Phone: <a href="tel:+421915786829">+421 915 786 829</a>
+  </div>
+
+  <h2>2. Personal Data We Collect</h2>
+  <table>
+    <tr>
+      <th>Category</th>
+      <th>Data types</th>
+      <th>Source</th>
+    </tr>
+    <tr>
+      <td>Account data</td>
+      <td>First and last name, email address, profile photo</td>
+      <td>Provided by you at registration</td>
+    </tr>
+    <tr>
+      <td>Location data</td>
+      <td>Approximate location (city / region) used to show nearby events</td>
+      <td>Device, with your explicit permission</td>
+    </tr>
+    <tr>
+      <td>User content</td>
+      <td>Events and clubs you create, photos you upload, messages sent in event chats</td>
+      <td>Provided by you in-app</td>
+    </tr>
+    <tr>
+      <td>Transaction data</td>
+      <td>Booking history, attended events, payment status (not card data)</td>
+      <td>Generated through your use of the Service</td>
+    </tr>
+    <tr>
+      <td>Device &amp; technical data</td>
+      <td>Push notification token, app version, device OS, crash logs</td>
+      <td>Automatically collected</td>
+    </tr>
+    <tr>
+      <td>Usage data</td>
+      <td>Features used, screens viewed, interactions within the app</td>
+      <td>Automatically collected</td>
+    </tr>
+  </table>
+  <p>We do not collect sensitive personal data (special categories under Art. 9 GDPR) and we do not collect payment card details — payments are processed exclusively by Stripe, Inc. under their own privacy policy.</p>
+
+  <h2>3. Legal Bases and Purposes of Processing</h2>
+  <table>
+    <tr>
+      <th>Purpose</th>
+      <th>Legal basis (GDPR Art. 6)</th>
+    </tr>
+    <tr>
+      <td>Creating and managing your account; enabling core app features</td>
+      <td>Art. 6(1)(b) — performance of a contract</td>
+    </tr>
+    <tr>
+      <td>Processing bookings and payments for paid events</td>
+      <td>Art. 6(1)(b) — performance of a contract</td>
+    </tr>
+    <tr>
+      <td>Showing nearby events based on your location</td>
+      <td>Art. 6(1)(b) — performance of a contract</td>
+    </tr>
+    <tr>
+      <td>Sending transactional notifications (booking confirmations, event reminders)</td>
+      <td>Art. 6(1)(b) — performance of a contract</td>
+    </tr>
+    <tr>
+      <td>Improving app performance, crash analysis, diagnostics</td>
+      <td>Art. 6(1)(f) — legitimate interests of the Controller</td>
+    </tr>
+    <tr>
+      <td>Personalising content recommendations</td>
+      <td>Art. 6(1)(f) — legitimate interests of the Controller</td>
+    </tr>
+    <tr>
+      <td>Compliance with legal obligations (accounting, tax records)</td>
+      <td>Art. 6(1)(c) — legal obligation</td>
+    </tr>
+  </table>
+
+  <h2>4. Data Sharing and Processors</h2>
+  <p>We do not sell your personal data. We share data only with the following third-party processors under data processing agreements:</p>
+  <table>
+    <tr>
+      <th>Processor</th>
+      <th>Purpose</th>
+      <th>Location</th>
+    </tr>
+    <tr>
+      <td>Supabase, Inc.</td>
+      <td>Database, authentication, file storage</td>
+      <td>EU region (AWS Frankfurt)</td>
+    </tr>
+    <tr>
+      <td>Stripe, Inc.</td>
+      <td>Payment processing</td>
+      <td>USA — Standard Contractual Clauses apply</td>
+    </tr>
+    <tr>
+      <td>Expo (Expo Technology, Inc.)</td>
+      <td>Push notification delivery</td>
+      <td>USA — Standard Contractual Clauses apply</td>
+    </tr>
+  </table>
+  <p>For transfers to the United States, we rely on Standard Contractual Clauses (SCCs) approved by the European Commission pursuant to Art. 46(2)(c) GDPR.</p>
+
+  <h2>5. Data Retention</h2>
+  <p>We retain personal data for as long as your account is active. Upon account deletion, all personal data (profile, events, clubs, messages, booking history) is permanently deleted within <strong>30 days</strong>, except where retention is required by law (e.g. accounting and tax records are retained for 10 years in accordance with Slovak law).</p>
+
+  <h2>6. Your Rights</h2>
+  <p>Under GDPR, you have the following rights with respect to your personal data:</p>
+  <ul>
+    <li><strong>Right of access (Art. 15)</strong> — request a copy of the data we hold about you</li>
+    <li><strong>Right to rectification (Art. 16)</strong> — correct inaccurate or incomplete data</li>
+    <li><strong>Right to erasure (Art. 17)</strong> — request deletion of your data ("right to be forgotten")</li>
+    <li><strong>Right to restriction of processing (Art. 18)</strong> — limit how we use your data in certain circumstances</li>
+    <li><strong>Right to data portability (Art. 20)</strong> — receive your data in a structured, machine-readable format</li>
+    <li><strong>Right to object (Art. 21)</strong> — object to processing based on legitimate interests</li>
+    <li><strong>Right to withdraw consent</strong> — where processing is based on consent, you may withdraw it at any time without affecting prior processing</li>
+  </ul>
+  <p>You can exercise most of these rights directly in the app under Settings. For other requests, contact us at <a href="mailto:admin@woeva.com">admin@woeva.com</a>. We will respond within 30 days.</p>
+
+  <h2>7. Right to Lodge a Complaint</h2>
+  <p>If you believe we are processing your personal data unlawfully, you have the right to lodge a complaint with the supervisory authority:</p>
+  <p>
+    <strong>Úrad na ochranu osobných údajov Slovenskej republiky</strong><br>
+    Hraničná 12, 820 07 Bratislava<br>
+    <a href="https://www.dataprotection.gov.sk" target="_blank">www.dataprotection.gov.sk</a>
   </p>
 
+  <h2>8. Cookies and Tracking</h2>
+  <p>The Woeva mobile application does not use browser cookies. The website (woeva.com) uses only technically necessary session data and does not use third-party advertising or tracking cookies.</p>
+
+  <h2>9. Children</h2>
+  <p>The Service is not directed to children under the age of 16. We do not knowingly collect personal data from children under 16. If you believe a child has provided us with personal data, please contact us at <a href="mailto:admin@woeva.com">admin@woeva.com</a>.</p>
+
+  <h2>10. Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time. We will notify you of material changes via the app or by email. Continued use of the Service after the effective date of changes constitutes acceptance of the updated policy.</p>
+
+  <h2>11. Contact</h2>
+  <p>For any privacy-related questions or requests:<br>
+  Email: <a href="mailto:admin@woeva.com">admin@woeva.com</a><br>
+  Phone: <a href="tel:+421915786829">+421 915 786 829</a></p>
+
   <footer>
-    &copy; 2026 Sportqo s. r. o. All rights reserved.
+    &copy; 2026 Sportqo s. r. o. &nbsp;|&nbsp; <a href="/terms">Terms of Service</a> &nbsp;|&nbsp; <a href="/privacy">Privacy Policy</a>
   </footer>
 </body>
 </html>
