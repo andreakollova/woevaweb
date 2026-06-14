@@ -3,118 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Woeva – Klub</title>
-  <meta name="description" content="Otvor tento klub v appke Woeva." />
+  <title>Woeva</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #0a0a0a;
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-    .card {
-      background: #161616;
-      border: 1px solid #222;
-      border-radius: 24px;
-      padding: 40px 32px;
-      max-width: 380px;
-      width: 100%;
-      text-align: center;
-    }
-    .logo {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 24px;
-    }
-    h1 {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      letter-spacing: -0.3px;
-    }
-    p {
-      font-size: 15px;
-      color: rgba(255,255,255,0.55);
-      line-height: 1.5;
-      margin-bottom: 32px;
-    }
-    .btn-primary {
-      display: block;
-      background: #c9ff47;
-      color: #0a0a0a;
-      font-size: 16px;
-      font-weight: 700;
-      border-radius: 50px;
-      padding: 16px 24px;
-      text-decoration: none;
-      margin-bottom: 12px;
-      letter-spacing: -0.2px;
-    }
-    .btn-secondary {
-      display: block;
-      background: transparent;
-      color: rgba(255,255,255,0.5);
-      font-size: 14px;
-      border-radius: 50px;
-      padding: 14px 24px;
-      text-decoration: none;
-      border: 1px solid #333;
-    }
-    .btn-secondary:hover { color: #fff; border-color: #555; }
-    .stores {
-      display: flex;
-      gap: 10px;
-      margin-top: 24px;
-    }
-    .stores a {
-      flex: 1;
-      border: 1px solid #2a2a2a;
-      border-radius: 14px;
-      padding: 12px 8px;
-      text-align: center;
-      text-decoration: none;
-      color: rgba(255,255,255,0.6);
-      font-size: 12px;
-    }
-    .stores a span { display: block; font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+    body { margin: 0; background: #0a0a0a; }
   </style>
 </head>
 <body>
-  <div class="card">
-    <img class="logo" src="https://woeva.com/LogoWoeva.png" alt="Woeva" />
-    <h1>Otvor v Woeva appke</h1>
-    <p>Tento klub je dostupný v appke Woeva. Stiahni si ju alebo ho otvor priamo.</p>
-    <a class="btn-primary" id="openBtn" href="#">Otvoriť v appke</a>
-    <div class="stores">
-      <a href="https://apps.apple.com/app/woeva/id6746527862">
-        App Store
-        <span>iOS</span>
-      </a>
-      <a href="https://play.google.com/store/apps/details?id=com.woeva.app">
-        Google Play
-        <span>Android</span>
-      </a>
-    </div>
-  </div>
-
   <script>
-    const path = window.location.pathname; // /club/<id>
-    const clubId = path.split('/').filter(Boolean).pop();
-    const deepLink = 'woeva://club/' + clubId;
+    var path = window.location.pathname;
+    var clubId = path.split('/').filter(Boolean).pop();
+    var isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    var isAndroid = /Android/i.test(navigator.userAgent);
 
-    document.getElementById('openBtn').href = deepLink;
+    if (clubId) {
+      window.location.href = 'woeva://club/' + clubId;
 
-    // Auto-try deep link on mobile
-    const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
-    if (isMobile && clubId) {
       setTimeout(function() {
-        window.location.href = deepLink;
-      }, 300);
+        if (isIOS) {
+          window.location.href = 'https://apps.apple.com/app/woeva/id6746527862';
+        } else if (isAndroid) {
+          window.location.href = 'https://play.google.com/store/apps/details?id=com.woeva.app';
+        } else {
+          window.location.href = 'https://woeva.com';
+        }
+      }, 1500);
+    } else {
+      window.location.href = 'https://woeva.com';
     }
   </script>
 </body>
