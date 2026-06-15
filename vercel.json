@@ -1,8 +1,3 @@
 {
-  "cleanUrls": true,
-  "rewrites": [
-    { "source": "/event/:path*", "destination": "/share-event.html" },
-    { "source": "/club/:path*", "destination": "/share-club.html" },
-    { "source": "/profile/:path*", "destination": "/share-profile.html" }
-  ]
+  "cleanUrls": true
 }
