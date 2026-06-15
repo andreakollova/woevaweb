@@ -1,8 +1,8 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/event/:id", "destination": "/share-event.html" },
-    { "source": "/club/:id", "destination": "/share-club.html" },
-    { "source": "/profile/:id", "destination": "/share-profile.html" }
+    { "source": "/event/:path*", "destination": "/share-event.html" },
+    { "source": "/club/:path*", "destination": "/share-club.html" },
+    { "source": "/profile/:path*", "destination": "/share-profile.html" }
   ]
 }
