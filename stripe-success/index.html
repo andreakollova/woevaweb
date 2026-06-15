@@ -28,29 +28,6 @@
       position: relative;
     }
 
-    /* Status bar */
-    .status-bar {
-      background: #B9FF00;
-      padding: 14px 20px 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .status-time { font-size: 15px; font-weight: 700; color: #000; }
-    .status-icons { font-size: 13px; color: #000; opacity: 0.6; }
-
-    /* Dynamic island */
-    .island {
-      position: absolute;
-      top: 12px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 110px;
-      height: 30px;
-      background: #000;
-      border-radius: 20px;
-    }
-
     /* Content */
     .content {
       padding: 36px 28px 40px;
@@ -127,12 +104,6 @@
 </head>
 <body>
   <div class="phone">
-    <div class="island"></div>
-    <div class="status-bar">
-      <span class="status-time">9:41</span>
-      <span class="status-icons">●●● ▲ 100%</span>
-    </div>
-
     <div class="content">
       <img src="/LogoWoeva.png" alt="Woeva" class="logo" />
 
@@ -160,7 +131,8 @@
       ? 'woeva://event/create/step3'
       : 'woeva://dashboard?tab=payouts';
 
-    let seconds = 5;
+    window.location.href = deepLink;
+    let seconds = 3;
     const secEl = document.getElementById('sec');
     const timer = setInterval(() => {
       seconds--;
