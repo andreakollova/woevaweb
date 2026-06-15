@@ -1,6 +1,7 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/club/:id", "destination": "/club/index.html" }
+    { "source": "/club/:id", "destination": "/club/index.html" },
+    { "source": "/event/:id", "destination": "/event/index.html" }
   ]
 }
