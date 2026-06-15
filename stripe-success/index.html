@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Platby nastavené · Woeva</title>
+  <link rel="icon" href="/favicon.png" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100svh;
+      background: #f5f5f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 24px;
+    }
+
+    .phone {
+      width: min(360px, 90vw);
+      background: #fff;
+      border-radius: 40px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.18);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Status bar */
+    .status-bar {
+      background: #B9FF00;
+      padding: 14px 20px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .status-time { font-size: 15px; font-weight: 700; color: #000; }
+    .status-icons { font-size: 13px; color: #000; opacity: 0.6; }
+
+    /* Dynamic island */
+    .island {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 110px;
+      height: 30px;
+      background: #000;
+      border-radius: 20px;
+    }
+
+    /* Content */
+    .content {
+      padding: 36px 28px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .logo {
+      height: 28px;
+      margin-bottom: 32px;
+    }
+
+    .check-ring {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #B9FF00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      animation: pop 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    @keyframes pop {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+    .check-ring svg { width: 36px; height: 36px; }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #000;
+      text-align: center;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #666;
+      text-align: center;
+      line-height: 1.5;
+      margin-bottom: 32px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 16px;
+      background: #000;
+      border: none;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+      margin-bottom: 12px;
+      transition: opacity 0.15s;
+    }
+    .btn:active { opacity: 0.8; }
+
+    .countdown {
+      font-size: 12px;
+      color: #aaa;
+      text-align: center;
+    }
+    .countdown span { color: #000; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <div class="island"></div>
+    <div class="status-bar">
+      <span class="status-time">9:41</span>
+      <span class="status-icons">●●● ▲ 100%</span>
+    </div>
+
+    <div class="content">
+      <img src="/LogoWoeva.png" alt="Woeva" class="logo" />
+
+      <div class="check-ring">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 12l5 5L19 7" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <h1>Platby sú nastavené!</h1>
+      <p>Teraz môžeš prijímať platby za tvoje eventy priamo v appke. Všetko je pripravené.</p>
+
+      <a href="woeva://dashboard?tab=payouts" class="btn" id="openBtn">
+        Prejsť do Woeva →
+      </a>
+
+      <p class="countdown" id="countdown">Presmerovanie za <span id="sec">5</span> s</p>
+    </div>
+  </div>
+
+  <script>
+    const deepLink = 'woeva://dashboard?tab=payouts';
+
+    let seconds = 5;
+    const secEl = document.getElementById('sec');
+    const timer = setInterval(() => {
+      seconds--;
+      if (secEl) secEl.textContent = String(seconds);
+      if (seconds <= 0) {
+        clearInterval(timer);
+        window.location.href = deepLink;
+      }
+    }, 1000);
+
+    document.getElementById('openBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      clearInterval(timer);
+      window.location.href = deepLink;
+    });
+  </script>
+</body>
+</html>
