@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Woeva</title>
+  <link rel="icon" href="/favicon.png" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100svh;
+      background: #0a0a09;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 24px;
+    }
+
+    .card {
+      width: min(400px, 100%);
+      background: #fff;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    }
+
+    .content {
+      padding: 32px 20px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #f0f0f0;
+      margin-bottom: 16px;
+    }
+
+    .avatar-placeholder {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #B9FF00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: 800;
+      color: #000;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #000;
+      letter-spacing: -0.4px;
+      margin-bottom: 6px;
+    }
+
+    .bio {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .loading-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #f0f0f0;
+      margin-bottom: 16px;
+      animation: shimmer 1.2s ease-in-out infinite;
+    }
+    .loading-name {
+      height: 22px;
+      background: #f0f0f0;
+      border-radius: 8px;
+      width: 60%;
+      margin-bottom: 8px;
+      animation: shimmer 1.2s ease-in-out infinite;
+    }
+    .loading-bio {
+      height: 14px;
+      background: #f0f0f0;
+      border-radius: 6px;
+      width: 80%;
+      margin-bottom: 24px;
+      animation: shimmer 1.2s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    .divider {
+      height: 1px;
+      background: #f0f0f0;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .btn-open {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: #000;
+      border: none;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: opacity 0.15s;
+    }
+    .btn-open:active { opacity: 0.8; }
+
+    .btn-store {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      background: transparent;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #444;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .btn-store:active { background: #f5f5f5; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="content">
+      <div id="loading">
+        <div class="loading-avatar"></div>
+        <div class="loading-name"></div>
+        <div class="loading-bio"></div>
+      </div>
+
+      <div id="profileInfo" style="display:none; flex-direction:column; align-items:center; width:100%">
+        <img id="avatarImg" class="avatar" style="display:none" alt="" />
+        <div id="avatarPlaceholder" class="avatar-placeholder" style="display:none"></div>
+        <h1 id="profileName"></h1>
+        <p class="bio" id="profileBio" style="display:none"></p>
+        <div class="divider"></div>
+      </div>
+
+      <a id="openBtn" class="btn-open" href="#">Otvoriť vo Woeva</a>
+      <a id="storeBtn" class="btn-store" href="https://apps.apple.com/sk/app/woeva/id6738044714" target="_blank">
+        Stiahnuť Woeva
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const SUPABASE_URL = 'https://cjljktituvuamjwksuxg.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNqbGprdGl0dXZ1YW1qd2tzdXhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczODQzMTcsImV4cCI6MjA5Mjk2MDMxN30.8KToU2sarmrqvcO8cXlhs4vDA1TC-sOMyg4Mm8NCNxI';
+
+    const pathParts = window.location.pathname.split('/').filter(Boolean);
+    const profileId = pathParts[pathParts.length - 1];
+
+    const deepLink = `woeva://profile/${profileId}`;
+    document.getElementById('openBtn').href = deepLink;
+    window.location.href = deepLink;
+
+    async function loadProfile() {
+      try {
+        const res = await fetch(
+          `${SUPABASE_URL}/rest/v1/profiles?id=eq.${profileId}&select=name,bio,avatar_url`,
+          { headers: { apikey: SUPABASE_ANON, Authorization: `Bearer ${SUPABASE_ANON}` } }
+        );
+        const data = await res.json();
+        const profile = data[0];
+        if (!profile) return;
+
+        document.title = `${profile.name || 'Profil'} · Woeva`;
+        document.getElementById('loading').style.display = 'none';
+        const info = document.getElementById('profileInfo');
+        info.style.display = 'flex';
+
+        document.getElementById('profileName').textContent = profile.name || '';
+
+        if (profile.avatar_url) {
+          const img = document.getElementById('avatarImg');
+          img.src = profile.avatar_url;
+          img.style.display = 'block';
+        } else {
+          const ph = document.getElementById('avatarPlaceholder');
+          ph.textContent = (profile.name || '?').charAt(0).toUpperCase();
+          ph.style.display = 'flex';
+        }
+
+        if (profile.bio) {
+          const bio = document.getElementById('profileBio');
+          bio.textContent = profile.bio;
+          bio.style.display = 'block';
+        }
+      } catch (e) {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('profileInfo').style.display = 'flex';
+        document.getElementById('profileName').textContent = 'Woeva';
+        document.getElementById('avatarPlaceholder').textContent = 'W';
+        document.getElementById('avatarPlaceholder').style.display = 'flex';
+      }
+    }
+
+    loadProfile();
+
+    document.getElementById('openBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = deepLink;
+    });
+  </script>
+</body>
+</html>
