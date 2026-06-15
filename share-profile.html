@@ -173,8 +173,9 @@
     const SUPABASE_URL = 'https://cjljktituvuamjwksuxg.supabase.co';
     const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNqbGprdGl0dXZ1YW1qd2tzdXhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczODQzMTcsImV4cCI6MjA5Mjk2MDMxN30.8KToU2sarmrqvcO8cXlhs4vDA1TC-sOMyg4Mm8NCNxI';
 
+    const params = new URLSearchParams(window.location.search);
     const pathParts = window.location.pathname.split('/').filter(Boolean);
-    const profileId = pathParts[pathParts.length - 1];
+    const profileId = params.get('id') || pathParts[pathParts.length - 1];
 
     const deepLink = `woeva://profile/${profileId}`;
     document.getElementById('openBtn').href = deepLink;
