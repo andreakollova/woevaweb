@@ -214,9 +214,6 @@
     const deepLink = `woeva://event/${eventId}`;
     document.getElementById('openBtn').href = deepLink;
 
-    // Try to open the app immediately
-    window.location.href = deepLink;
-
     // Fetch event data
     async function loadEvent() {
       try {
