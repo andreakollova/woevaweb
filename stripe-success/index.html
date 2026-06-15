@@ -154,7 +154,11 @@
   </div>
 
   <script>
-    const deepLink = 'woeva://dashboard?tab=payouts';
+    const params = new URLSearchParams(window.location.search);
+    const from = params.get('from');
+    const deepLink = from === 'create'
+      ? 'woeva://event/create/step3'
+      : 'woeva://dashboard?tab=payouts';
 
     let seconds = 5;
     const secEl = document.getElementById('sec');
