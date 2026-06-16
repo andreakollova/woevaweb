@@ -196,7 +196,7 @@
 
       <div class="divider"></div>
 
-      <a id="openBtn" class="btn-open" href="#">Zobraziť klub vo Woeva</a>
+      <a id="openBtn" class="btn-open" href="#">Zobraziť klub v appke</a>
       <a id="storeBtn" class="btn-store" href="https://apps.apple.com/sk/app/woeva/id6767314046?l=sk" target="_blank">
         Stiahnuť Woeva
       </a>
@@ -217,13 +217,16 @@
 
     async function loadClub() {
       try {
-        const res = await fetch(
-          `${SUPABASE_URL}/rest/v1/clubs?id=eq.${clubId}&select=name,tagline,cover_url,category,city,member_count`,
-          { headers: { apikey: SUPABASE_ANON, Authorization: `Bearer ${SUPABASE_ANON}` } }
-        );
-        const data = await res.json();
+        const [clubRes, membersRes] = await Promise.all([
+          fetch(`${SUPABASE_URL}/rest/v1/clubs?id=eq.${clubId}&select=name,tagline,cover_url,category,city`,
+            { headers: { apikey: SUPABASE_ANON, Authorization: `Bearer ${SUPABASE_ANON}` } }),
+          fetch(`${SUPABASE_URL}/rest/v1/club_members?club_id=eq.${clubId}&status=eq.approved&select=id`,
+            { headers: { apikey: SUPABASE_ANON, Authorization: `Bearer ${SUPABASE_ANON}`, Prefer: 'count=exact', Range: '0-0' } }),
+        ]);
+        const data = await clubRes.json();
         const club = data[0];
         if (!club) return;
+        const memberCount = parseInt(membersRes.headers.get('content-range')?.split('/')[1] ?? '0');
 
         document.title = `${club.name} · Woeva`;
         document.getElementById('loading').style.display = 'none';
@@ -251,10 +254,8 @@
           document.getElementById('cityText').textContent = club.city;
         }
 
-        if (club.member_count != null) {
-          document.getElementById('membersRow').style.display = 'flex';
-          document.getElementById('membersText').textContent = `${club.member_count} členov`;
-        }
+        document.getElementById('membersRow').style.display = 'flex';
+        document.getElementById('membersText').textContent = `${memberCount} ${memberCount === 1 ? 'člen' : memberCount < 5 ? 'členovia' : 'členov'}`;
       } catch (e) {
         document.getElementById('loading').style.display = 'none';
         document.getElementById('clubInfo').style.display = 'block';
